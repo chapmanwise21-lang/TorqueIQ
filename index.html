@@ -1129,9 +1129,9 @@
       <div class="price-divider"></div>
       <ul class="price-features">
         <li>AI Mechanic diagnostic access</li>
-        <li>Smart parts finder</li>
         <li>Make & model knowledge base</li>
         <li>Community forum read access</li>
+        <li>Smart parts finder <span style="font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--gold);letter-spacing:0.1em;">— coming soon</span></li>
       </ul>
     </div>
 
@@ -1146,6 +1146,7 @@
         <li>Post questions, get community replies</li>
         <li>Monthly breakdown digest by make</li>
         <li>Priority AI Mechanic responses</li>
+        <li>Smart parts finder <span style="font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--gold);letter-spacing:0.1em;">— coming soon</span></li>
       </ul>
     </div>
 
@@ -1236,17 +1237,34 @@
 </footer>
 
 <script>
-  function handleSignup(inputId, formId, successId) {
+  const APPS_SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+
+  async function handleSignup(inputId, formId, successId) {
     const email = document.getElementById(inputId).value.trim();
     if (!email || !email.includes('@')) {
       document.getElementById(inputId).style.borderBottom = '1px solid rgba(200,168,75,0.8)';
       document.getElementById(inputId).placeholder = 'Enter a valid email';
       return;
     }
+
+    const btn = document.querySelector(`#${formId} button`);
+    btn.textContent = 'Saving...';
+    btn.disabled = true;
+
+    try {
+      await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, timestamp: new Date().toISOString(), source: inputId === 'heroEmail' ? 'hero' : 'cta' })
+      });
+    } catch (e) {
+      console.error('Signup error:', e);
+    }
+
     document.getElementById(formId).style.display = 'none';
     const success = document.getElementById(successId);
     success.style.display = 'block';
-    console.log('Waitlist signup:', email);
   }
 
   // Intersection observer for scroll animations
