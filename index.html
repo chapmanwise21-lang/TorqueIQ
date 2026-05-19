@@ -43,6 +43,30 @@
     opacity: 0.4;
   }
 
+  /* ── ANNOUNCEMENT BANNER ── */
+  .announce-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 101;
+    background: var(--gold);
+    color: var(--black);
+    text-align: center;
+    padding: 0.6rem 2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+  }
+
+  .announce-bar span {
+    opacity: 0.6;
+    margin: 0 0.75rem;
+  }
+
+  nav { top: 36px; }
+
+  .hero { padding-top: 10rem; }
+
   /* ── NAV ── */
   nav {
     position: fixed;
@@ -590,6 +614,41 @@
 
   .cta .success-msg { margin: 0 auto; }
 
+  .offer-pills {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+
+  .offer-pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    border: 1px solid var(--gold-border);
+    padding: 0.4rem 1rem;
+    border-radius: 2px;
+  }
+
+  .price-original {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: rgba(245,242,236,0.25);
+    text-decoration: line-through;
+    margin-bottom: 0.15rem;
+  }
+
+  .price-saving {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
   /* ── FOOTER ── */
   footer {
     position: relative;
@@ -926,6 +985,11 @@
 </head>
 <body>
 
+<!-- ANNOUNCEMENT BANNER -->
+<div class="announce-bar">
+  🔧 FOUNDING MEMBER OFFER <span>—</span> JOIN THE WAITLIST <span>—</span> FIRST MONTH FREE + 40% OFF FOREVER AT LAUNCH
+</div>
+
 <!-- NAV -->
 <nav>
   <div class="nav-logo">
@@ -957,10 +1021,10 @@
 
   <div class="waitlist-form" id="heroForm">
     <input type="email" id="heroEmail" placeholder="your@email.com" />
-    <button onclick="handleSignup('heroEmail', 'heroForm', 'heroSuccess')">Notify Me</button>
+    <button onclick="handleSignup('heroEmail', 'heroForm', 'heroSuccess')">Claim Offer</button>
   </div>
-  <div class="success-msg" id="heroSuccess">✦ You're on the list. We'll be in touch.</div>
-  <p class="form-note">No spam. Launch notification only.</p>
+  <div class="success-msg" id="heroSuccess">✦ You're in. First month free + 40% off locked in at launch.</div>
+  <p class="form-note">First month free · 40% off forever · No spam · Cancel anytime</p>
 
   <div class="scroll-hint">
     <span>Explore</span>
@@ -1128,8 +1192,10 @@
   <div class="pricing-grid">
     <div class="price-card">
       <p class="price-tier">Basic</p>
-      <div class="price-amount"><sup>$</sup>29</div>
-      <p class="price-period">per month</p>
+      <p class="price-original">$29/mo at launch</p>
+      <div class="price-amount"><sup>$</sup>17</div>
+      <p class="price-period">per month · founding rate</p>
+      <p class="price-saving">↑ First month free + 40% off forever</p>
       <div class="price-divider"></div>
       <ul class="price-features">
         <li>AI Mechanic diagnostic access</li>
@@ -1141,8 +1207,10 @@
 
     <div class="price-card featured">
       <p class="price-tier">Garage Pro</p>
-      <div class="price-amount"><sup>$</sup>79</div>
-      <p class="price-period">per month</p>
+      <p class="price-original">$79/mo at launch</p>
+      <div class="price-amount"><sup>$</sup>47</div>
+      <p class="price-period">per month · founding rate</p>
+      <p class="price-saving">↑ First month free + 40% off forever</p>
       <div class="price-divider"></div>
       <ul class="price-features">
         <li>Everything in Basic</li>
@@ -1156,8 +1224,10 @@
 
     <div class="price-card">
       <p class="price-tier">Founding Member</p>
-      <div class="price-amount"><sup>$</sup>149</div>
+      <p class="price-original">$149/mo at launch</p>
+      <div class="price-amount"><sup>$</sup>89</div>
       <p class="price-period">per month · rate locked for life</p>
+      <p class="price-saving">↑ First month free + 40% off forever</p>
       <div class="price-divider"></div>
       <ul class="price-features">
         <li>Everything in Garage Pro</li>
@@ -1219,13 +1289,19 @@
 <!-- BOTTOM CTA -->
 <section class="cta">
   <div class="cta-glow"></div>
-  <h2>Be first to the garage.</h2>
-  <p>Join the waitlist. We'll notify you the moment TorqueIQ launches.</p>
+  <h2>Lock in your founding rate.</h2>
+  <p>Join the waitlist now — first month free, then 40% off every month after. Forever.</p>
+  <div class="offer-pills">
+    <span class="offer-pill">✦ First month free</span>
+    <span class="offer-pill">✦ 40% off forever</span>
+    <span class="offer-pill">✦ Rate locked for life</span>
+  </div>
   <div class="waitlist-form" id="ctaForm">
     <input type="email" id="ctaEmail" placeholder="your@email.com" />
-    <button onclick="handleSignup('ctaEmail', 'ctaForm', 'ctaSuccess')">Join Waitlist</button>
+    <button onclick="handleSignup('ctaEmail', 'ctaForm', 'ctaSuccess')">Claim Founding Rate</button>
   </div>
-  <div class="success-msg" id="ctaSuccess">✦ You're on the list. We'll be in touch.</div>
+  <div class="success-msg" id="ctaSuccess">✦ You're in. First month free + 40% off locked in at launch.</div>
+  <p class="form-note" style="opacity:1;animation:none;margin-top:1rem;">Offer only available during pre-launch. No credit card required.</p>
 </section>
 
 <!-- FOOTER -->
