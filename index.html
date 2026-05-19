@@ -955,6 +955,27 @@
     margin-bottom: 1rem;
   }
 
+  .hero-offer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.7s forwards;
+  }
+
+  .hero-offer-item {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+  }
+
+  .hero-offer-divider {
+    color: rgba(200,168,75,0.3);
+    font-size: 0.8rem;
+  }
+
   /* ── ANIMATIONS ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
@@ -1015,12 +1036,20 @@
     TorqueIQ's AI Mechanic diagnoses your classic car's symptoms instantly — ranked causes, step-by-step repair guidance, and a clear DIY vs. shop call. Backed by a community of owners who've been there.
   </p>
 
+  <div class="hero-offer">
+    <span class="hero-offer-item">✦ First month free</span>
+    <span class="hero-offer-divider">·</span>
+    <span class="hero-offer-item">40% off every month after</span>
+    <span class="hero-offer-divider">·</span>
+    <span class="hero-offer-item">Rate locked for life</span>
+  </div>
+
   <div class="waitlist-form" id="heroForm">
     <input type="email" id="heroEmail" placeholder="your@email.com" />
     <button onclick="handleSignup('heroEmail', 'heroForm', 'heroSuccess')">Claim Offer</button>
   </div>
   <div class="success-msg" id="heroSuccess">✦ You're in. First month free + 40% off locked in at launch.</div>
-  <p class="form-note">First month free · 40% off forever · No spam · Cancel anytime</p>
+  <p class="form-note">Pre-launch only · No credit card required · Cancel anytime</p>
 
 
 </section>
