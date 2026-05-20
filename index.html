@@ -570,10 +570,6 @@
     border: 1px solid var(--gold-border);
     padding: 3rem;
     position: relative;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: start;
   }
 
   .founding-card::before {
@@ -1070,7 +1066,6 @@
 
   @media (max-width: 860px) {
     .feature-hero { grid-template-columns: 1fr; }
-    .founding-card { grid-template-columns: 1fr; }
   }
 
   /* ── ROADMAP ── */
@@ -1453,43 +1448,6 @@
         <li>Early access to all new tools</li>
       </ul>
     </div>
-    <div>
-      <div class="founding-economics">
-        <p class="economics-label">Unit Economics</p>
-        <div class="economics-row">
-          <span class="label">Revenue</span>
-          <span class="val">$149.99</span>
-        </div>
-        <div class="economics-row">
-          <span class="label">Stripe fee</span>
-          <span class="val">−$4.70</span>
-        </div>
-        <div class="economics-row">
-          <span class="label">Self-employment tax</span>
-          <span class="val">−$21.00</span>
-        </div>
-        <div class="economics-row">
-          <span class="label">Federal income tax</span>
-          <span class="val">−$18.00</span>
-        </div>
-        <div class="economics-row highlight">
-          <span class="label">Net after taxes</span>
-          <span class="val">~$106</span>
-        </div>
-        <div class="economics-row">
-          <span class="label">Worst-case API cost (75 sessions)</span>
-          <span class="val">−$75.00</span>
-        </div>
-        <div class="economics-row highlight">
-          <span class="label">Floor profit</span>
-          <span class="val">~$31+</span>
-        </div>
-      </div>
-      <p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:rgba(245,242,236,0.25);line-height:1.6;margin-top:1rem;letter-spacing:0.04em;">
-        75-session cap is the breakeven-safe ceiling. Real users averaging 2 sessions/month hit it in 3+ years — extremely unlikely for a classic car owner.
-      </p>
-    </div>
-  </div>
 </section>
 
 <!-- ROADMAP -->
