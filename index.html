@@ -480,27 +480,41 @@
     margin: 0 auto;
   }
 
-  .pricing-grid {
+  .pricing-intro {
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: rgba(245,242,236,0.5);
+    line-height: 1.7;
+    max-width: 540px;
+    margin-bottom: 4rem;
+    margin-top: -2rem;
+  }
+
+  /* Credit packs row */
+  .credit-packs {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1px;
     background: rgba(200,168,75,0.1);
     border: 1px solid rgba(200,168,75,0.1);
-    margin-top: 4rem;
+    margin-bottom: 1px;
   }
 
-  .price-card {
+  .credit-pack {
     background: var(--black-2);
-    padding: 2.5rem;
+    padding: 2rem 2.5rem;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
   }
 
-  .price-card.featured {
+  .credit-pack.best-value {
     background: var(--black-3);
   }
 
-  .price-card.featured::after {
-    content: 'MOST POPULAR';
+  .credit-pack.best-value::after {
+    content: 'BEST VALUE';
     position: absolute;
     top: -1px; right: 2rem;
     background: var(--gold);
@@ -511,68 +525,241 @@
     padding: 0.3rem 0.75rem;
   }
 
-  .price-tier {
+  .pack-label {
     font-family: 'DM Mono', monospace;
     font-size: 0.65rem;
     letter-spacing: 0.2em;
     color: var(--gold);
     text-transform: uppercase;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
   }
 
-  .price-amount {
+  .pack-price {
     font-family: 'Playfair Display', serif;
-    font-size: 3rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .pack-price sup {
+    font-size: 1rem;
+    vertical-align: super;
+    color: var(--gold);
+  }
+
+  .pack-desc {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: rgba(245,242,236,0.35);
+    letter-spacing: 0.08em;
+    margin-top: 0.25rem;
+  }
+
+  .pack-per {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: rgba(200,168,75,0.6);
+    letter-spacing: 0.08em;
+    margin-top: 0.1rem;
+  }
+
+  /* Founding member — full width card */
+  .founding-card {
+    background: var(--black-3);
+    border: 1px solid var(--gold-border);
+    padding: 3rem;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .founding-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gold);
+  }
+
+  .founding-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    padding: 0.3rem 0.75rem;
+    margin-bottom: 1.25rem;
+    text-transform: uppercase;
+  }
+
+  .founding-tier {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .founding-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
     font-weight: 700;
     color: var(--white);
     line-height: 1;
     margin-bottom: 0.25rem;
   }
 
-  .price-amount sup {
-    font-size: 1.2rem;
+  .founding-price sup {
+    font-size: 1.4rem;
     vertical-align: super;
     color: var(--gold);
   }
 
-  .price-period {
+  .founding-period {
     font-family: 'DM Mono', monospace;
     font-size: 0.65rem;
     color: rgba(245,242,236,0.35);
     letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+
+  .founding-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.08em;
     margin-bottom: 2rem;
   }
 
-  .price-divider {
+  .founding-divider {
     height: 1px;
     background: rgba(200,168,75,0.15);
     margin-bottom: 2rem;
   }
 
-  .price-features {
+  .founding-features {
     list-style: none;
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
   }
 
-  .price-features li {
+  .founding-features li {
     font-size: 0.88rem;
     font-weight: 300;
-    color: rgba(245,242,236,0.6);
+    color: rgba(245,242,236,0.7);
     display: flex;
     align-items: flex-start;
     gap: 0.75rem;
     line-height: 1.5;
   }
 
-  .price-features li::before {
-    content: '—';
+  .founding-features li::before {
+    content: '◆';
+    font-size: 0.45rem;
     color: var(--gold);
     flex-shrink: 0;
+    margin-top: 0.45rem;
+  }
+
+  .founding-economics {
+    background: rgba(200,168,75,0.04);
+    border: 1px solid rgba(200,168,75,0.12);
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .economics-label {
     font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    margin-top: 0.1rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: rgba(245,242,236,0.3);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .economics-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(200,168,75,0.06);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+  }
+
+  .economics-row:last-child { border-bottom: none; }
+
+  .economics-row .label { color: rgba(245,242,236,0.4); }
+  .economics-row .val { color: rgba(245,242,236,0.6); }
+  .economics-row.highlight .label { color: var(--gold); }
+  .economics-row.highlight .val { color: var(--gold); font-weight: 500; }
+
+  /* Forum free row */
+  .forum-free {
+    background: var(--black-2);
+    border: 1px solid rgba(200,168,75,0.1);
+    border-top: none;
+    padding: 1.75rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .forum-free-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .forum-free-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    border: 1px solid var(--gold-border);
+    padding: 0.3rem 0.75rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .forum-free-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .forum-free-desc {
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: rgba(245,242,236,0.4);
+    line-height: 1.5;
+  }
+
+  .forum-free-price {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.9rem;
+    color: rgba(245,242,236,0.4);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .forum-free-price strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem;
+    color: var(--white);
+    font-weight: 700;
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.15rem;
   }
 
   /* ── BOTTOM CTA ── */
@@ -640,20 +827,25 @@
     border-radius: 2px;
   }
 
-  .price-original {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    color: rgba(245,242,236,0.25);
-    text-decoration: line-through;
-    margin-bottom: 0.15rem;
+  .hero-offer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.7s forwards;
   }
 
-  .price-saving {
+  .hero-offer-item {
     font-family: 'DM Mono', monospace;
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     letter-spacing: 0.1em;
     color: var(--gold);
-    margin-bottom: 1.5rem;
+  }
+
+  .hero-offer-divider {
+    color: rgba(200,168,75,0.3);
+    font-size: 0.8rem;
   }
 
   /* ── FOOTER ── */
@@ -878,6 +1070,7 @@
 
   @media (max-width: 860px) {
     .feature-hero { grid-template-columns: 1fr; }
+    .founding-card { grid-template-columns: 1fr; }
   }
 
   /* ── ROADMAP ── */
@@ -966,27 +1159,6 @@
     margin-bottom: 1rem;
   }
 
-  .hero-offer {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1.25rem;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.7s forwards;
-  }
-
-  .hero-offer-item {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    color: var(--gold);
-  }
-
-  .hero-offer-divider {
-    color: rgba(200,168,75,0.3);
-    font-size: 0.8rem;
-  }
-
   /* ── ANIMATIONS ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
@@ -1008,6 +1180,8 @@
     footer { flex-direction: column; gap: 1rem; text-align: center; }
     .features-grid { grid-template-columns: 1fr; }
     .steps { grid-template-columns: 1fr; }
+    .credit-packs { grid-template-columns: 1fr; }
+    .forum-free { flex-direction: column; align-items: flex-start; gap: 1rem; }
   }
 </style>
 </head>
@@ -1015,7 +1189,7 @@
 
 <!-- ANNOUNCEMENT BANNER -->
 <div class="announce-bar">
-  🔧 FOUNDING MEMBER OFFER <span>—</span> JOIN THE WAITLIST <span>—</span> FIRST MONTH FREE + 40% OFF FOREVER AT LAUNCH
+  🔧 FOUNDING MEMBER <span>—</span> $149.99 ONE-TIME <span>—</span> LIFETIME ACCESS · 75 SESSIONS · 40% OFF REFILLS FOREVER
 </div>
 
 <!-- NAV -->
@@ -1048,21 +1222,19 @@
   </p>
 
   <div class="hero-offer">
-    <span class="hero-offer-item">✦ First month free</span>
+    <span class="hero-offer-item">✦ Founding Member — $149.99 lifetime</span>
     <span class="hero-offer-divider">·</span>
-    <span class="hero-offer-item">40% off every month after</span>
+    <span class="hero-offer-item">75 sessions included</span>
     <span class="hero-offer-divider">·</span>
-    <span class="hero-offer-item">Rate locked for life</span>
+    <span class="hero-offer-item">40% off refills forever</span>
   </div>
 
   <div class="waitlist-form" id="heroForm">
     <input type="email" id="heroEmail" placeholder="your@email.com" />
-    <button onclick="handleSignup('heroEmail', 'heroForm', 'heroSuccess')">Claim Offer</button>
+    <button onclick="handleSignup('heroEmail', 'heroForm', 'heroSuccess')">Claim Founding Rate</button>
   </div>
-  <div class="success-msg" id="heroSuccess">✦ You're in. First month free + 40% off locked in at launch.</div>
-  <p class="form-note">Pre-launch only · No credit card required · Cancel anytime</p>
-
-
+  <div class="success-msg" id="heroSuccess">✦ You're on the list. We'll reach out when TorqueIQ launches.</div>
+  <p class="form-note">Pre-launch only · No credit card required</p>
 </section>
 
 <!-- STATS -->
@@ -1080,8 +1252,8 @@
     <span class="stat-label">AI Mechanic response time</span>
   </div>
   <div class="stat">
-    <span class="stat-num">Unlimited</span>
-    <span class="stat-label">AI diagnoses per month</span>
+    <span class="stat-num">$9.99</span>
+    <span class="stat-label">Per diagnostic session</span>
   </div>
 </div>
 
@@ -1164,7 +1336,7 @@
         <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
       </div>
       <h3 class="feature-name">Make & Model Intelligence</h3>
-      <p class="feature-desc">Purpose-built for imported classics. The AI knows the quirks of a 1973 Mini Moke, a Triumph TR6, and a early Land Rover Series III — not generic advice pulled from a modern car database.</p>
+      <p class="feature-desc">Purpose-built for imported classics. The AI knows the quirks of a 1973 Mini Moke, a Triumph TR6, and an early Land Rover Series III — not generic advice pulled from a modern car database.</p>
     </div>
 
     <div class="feature-card">
@@ -1196,7 +1368,7 @@
       <div class="step">
         <div class="step-num">01</div>
         <h3 class="step-title">Describe the problem</h3>
-        <p class="step-desc">Post your symptoms in the forum. What you hear, see, smell, or feel. No mechanical jargon required.</p>
+        <p class="step-desc">Start a session with one symptom — what you hear, see, smell, or feel. No mechanical jargon required.</p>
       </div>
       <div class="step">
         <div class="step-num">02</div>
@@ -1219,55 +1391,103 @@
 
 <!-- PRICING -->
 <section class="pricing">
-  <p class="section-label">Membership</p>
-  <h2 class="section-title">Built for people who'd rather wrench than wait.</h2>
+  <p class="section-label">Pricing</p>
+  <h2 class="section-title">Pay when your car breaks. Not when it doesn't.</h2>
+  <p class="pricing-intro">The forum is free — always. When you need the AI Mechanic, buy a session pack. One session, one symptom, until it's solved.</p>
 
-  <div class="pricing-grid">
-    <div class="price-card">
-      <p class="price-tier">Basic</p>
-      <p class="price-original">$29/mo at launch</p>
-      <div class="price-amount"><sup>$</sup>17</div>
-      <p class="price-period">per month · founding rate</p>
-      <p class="price-saving">↑ First month free + 40% off forever</p>
-      <div class="price-divider"></div>
-      <ul class="price-features">
-        <li>AI Mechanic diagnostic access</li>
-        <li>Make & model knowledge base</li>
-        <li>Community forum read access</li>
-        <li>Smart parts finder <span style="font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--gold);letter-spacing:0.1em;">— coming soon</span></li>
-      </ul>
+  <!-- FORUM FREE ROW -->
+  <div class="forum-free">
+    <div class="forum-free-left">
+      <span class="forum-free-badge">Always Free</span>
+      <div>
+        <div class="forum-free-label">Owner Community Forum</div>
+        <div class="forum-free-desc">Browse, post, and get answers from owners who've fixed the same problem on the same car. AI Mechanic responds first on every thread.</div>
+      </div>
+    </div>
+    <div class="forum-free-price">
+      <strong>$0</strong>
+      forever
+    </div>
+  </div>
+
+  <!-- CREDIT PACKS -->
+  <div class="credit-packs">
+    <div class="credit-pack">
+      <p class="pack-label">Single Session</p>
+      <div class="pack-price"><sup>$</sup>9.99</div>
+      <p class="pack-desc">1 diagnostic session</p>
+      <p class="pack-per">$9.99 / session</p>
     </div>
 
-    <div class="price-card featured">
-      <p class="price-tier">Garage Pro</p>
-      <p class="price-original">$79/mo at launch</p>
-      <div class="price-amount"><sup>$</sup>47</div>
-      <p class="price-period">per month · founding rate</p>
-      <p class="price-saving">↑ First month free + 40% off forever</p>
-      <div class="price-divider"></div>
-      <ul class="price-features">
-        <li>Everything in Basic</li>
+    <div class="credit-pack">
+      <p class="pack-label">3-Pack</p>
+      <div class="pack-price"><sup>$</sup>24.99</div>
+      <p class="pack-desc">3 diagnostic sessions</p>
+      <p class="pack-per">$8.33 / session</p>
+    </div>
+
+    <div class="credit-pack best-value">
+      <p class="pack-label">5-Pack</p>
+      <div class="pack-price"><sup>$</sup>39.99</div>
+      <p class="pack-desc">5 diagnostic sessions</p>
+      <p class="pack-per">$8.00 / session</p>
+    </div>
+  </div>
+
+  <!-- FOUNDING MEMBER -->
+  <div class="founding-card" style="margin-top:1px;">
+    <div>
+      <span class="founding-badge">Founding Member — Pre-Launch Only</span>
+      <p class="founding-tier">Lifetime Access</p>
+      <div class="founding-price"><sup>$</sup>149.99</div>
+      <p class="founding-period">one-time · never pay again</p>
+      <p class="founding-note">↑ 75 sessions included · 40% off all future packs · rate locked for life</p>
+      <div class="founding-divider"></div>
+      <ul class="founding-features">
+        <li>75 diagnostic sessions included</li>
+        <li>40% off all future session packs — forever</li>
+        <li>Rate locked for life — price never increases</li>
         <li>Full community forum access</li>
-        <li>Post questions, get community replies</li>
-        <li>Monthly breakdown digest by make</li>
-        <li>Priority AI Mechanic responses</li>
-      </ul>
-    </div>
-
-    <div class="price-card">
-      <p class="price-tier">Founding Member</p>
-      <p class="price-original">$149/mo at launch</p>
-      <div class="price-amount"><sup>$</sup>89</div>
-      <p class="price-period">per month · rate locked for life</p>
-      <p class="price-saving">↑ First month free + 40% off forever</p>
-      <div class="price-divider"></div>
-      <ul class="price-features">
-        <li>Everything in Garage Pro</li>
         <li>Founding member badge</li>
         <li>Direct input on new features</li>
-        <li>Rate locked forever</li>
         <li>Early access to all new tools</li>
       </ul>
+    </div>
+    <div>
+      <div class="founding-economics">
+        <p class="economics-label">Unit Economics</p>
+        <div class="economics-row">
+          <span class="label">Revenue</span>
+          <span class="val">$149.99</span>
+        </div>
+        <div class="economics-row">
+          <span class="label">Stripe fee</span>
+          <span class="val">−$4.70</span>
+        </div>
+        <div class="economics-row">
+          <span class="label">Self-employment tax</span>
+          <span class="val">−$21.00</span>
+        </div>
+        <div class="economics-row">
+          <span class="label">Federal income tax</span>
+          <span class="val">−$18.00</span>
+        </div>
+        <div class="economics-row highlight">
+          <span class="label">Net after taxes</span>
+          <span class="val">~$106</span>
+        </div>
+        <div class="economics-row">
+          <span class="label">Worst-case API cost (75 sessions)</span>
+          <span class="val">−$75.00</span>
+        </div>
+        <div class="economics-row highlight">
+          <span class="label">Floor profit</span>
+          <span class="val">~$31+</span>
+        </div>
+      </div>
+      <p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:rgba(245,242,236,0.25);line-height:1.6;margin-top:1rem;letter-spacing:0.04em;">
+        75-session cap is the breakeven-safe ceiling. Real users averaging 2 sessions/month hit it in 3+ years — extremely unlikely for a classic car owner.
+      </p>
     </div>
   </div>
 </section>
@@ -1321,19 +1541,20 @@
 <!-- BOTTOM CTA -->
 <section class="cta">
   <div class="cta-glow"></div>
-  <h2>Lock in your founding rate.</h2>
-  <p>Join the waitlist now — first month free, then 40% off every month after. Forever.</p>
+  <h2>Get in before launch.</h2>
+  <p>Founding Member pricing disappears when TorqueIQ goes live. $149.99 once. Lifetime access. 75 sessions included.</p>
   <div class="offer-pills">
-    <span class="offer-pill">✦ First month free</span>
-    <span class="offer-pill">✦ 40% off forever</span>
+    <span class="offer-pill">✦ $149.99 one-time</span>
+    <span class="offer-pill">✦ 75 sessions included</span>
+    <span class="offer-pill">✦ 40% off refills forever</span>
     <span class="offer-pill">✦ Rate locked for life</span>
   </div>
   <div class="waitlist-form" id="ctaForm">
     <input type="email" id="ctaEmail" placeholder="your@email.com" />
     <button onclick="handleSignup('ctaEmail', 'ctaForm', 'ctaSuccess')">Claim Founding Rate</button>
   </div>
-  <div class="success-msg" id="ctaSuccess">✦ You're in. First month free + 40% off locked in at launch.</div>
-  <p class="form-note" style="opacity:1;animation:none;margin-top:1rem;">Offer only available during pre-launch. No credit card required.</p>
+  <div class="success-msg" id="ctaSuccess">✦ You're on the list. We'll reach out when TorqueIQ launches.</div>
+  <p class="form-note" style="opacity:1;animation:none;margin-top:1rem;">Offer only available during pre-launch · No credit card required</p>
 </section>
 
 <!-- FOOTER -->
@@ -1393,7 +1614,7 @@
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('.feature-card, .step, .price-card, .roadmap-card').forEach(el => {
+  document.querySelectorAll('.feature-card, .step, .credit-pack, .founding-card, .roadmap-card').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
