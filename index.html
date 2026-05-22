@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TorqueIQ — AI-Powered Classic Car Diagnostics & Community</title>
 <meta name="description" content="TorqueIQ's AI Mechanic diagnoses your imported classic car instantly — ranked causes, step-by-step repair guidance, and a clear DIY vs. shop call. Backed by a community of owners who've been there.">
-<meta name="keywords" content="classic car diagnostics, AI mechanic, Mini Moke, Triumph, MG, Land Rover, imported classic cars, DIY car repair, classic car community">
+<meta name="keywords" content="classic car diagnostics, AI mechanic, Mini Moke, Triumph, MG, Land Rover, imported classic cars, DIY car repair, classic car community, roadside breakdown">
 <meta name="author" content="TorqueIQ">
 <meta property="og:title" content="TorqueIQ — AI-Powered Classic Car Intelligence">
 <meta property="og:description" content="Stop guessing. Start wrenching with confidence. AI diagnostics built specifically for imported classic cars.">
@@ -43,7 +43,6 @@
     cursor: default;
   }
 
-  /* ── NOISE TEXTURE OVERLAY ── */
   body::before {
     content: '';
     position: fixed;
@@ -54,7 +53,6 @@
     opacity: 0.4;
   }
 
-  /* ── ANNOUNCEMENT BANNER ── */
   .announce-bar {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -69,12 +67,8 @@
     font-weight: 500;
   }
 
-  .announce-bar span {
-    opacity: 0.6;
-    margin: 0 0.75rem;
-  }
+  .announce-bar span { opacity: 0.6; margin: 0 0.75rem; }
 
-  /* ── NAV ── */
   nav {
     position: fixed;
     top: 36px; left: 0; right: 0;
@@ -88,16 +82,8 @@
     backdrop-filter: blur(12px);
   }
 
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .nav-badge {
-    width: 36px;
-    height: 36px;
-  }
+  .nav-logo { display: flex; align-items: center; gap: 0.75rem; }
+  .nav-badge { width: 36px; height: 36px; }
 
   .nav-wordmark {
     font-family: 'Playfair Display', serif;
@@ -120,7 +106,6 @@
     text-transform: uppercase;
   }
 
-  /* ── HERO ── */
   .hero {
     position: relative;
     min-height: 100vh;
@@ -144,8 +129,7 @@
 
   .hero-glow {
     position: absolute;
-    width: 600px;
-    height: 600px;
+    width: 600px; height: 600px;
     border-radius: 50%;
     background: radial-gradient(circle, rgba(200,168,75,0.08) 0%, transparent 70%);
     top: 50%; left: 50%;
@@ -177,24 +161,26 @@
   }
 
   .hero-title .gold { color: var(--gold); }
-  .hero-title .outline {
-    -webkit-text-stroke: 1px var(--gold);
-    color: transparent;
-  }
+  .hero-title .outline { -webkit-text-stroke: 1px var(--gold); color: transparent; }
 
   .hero-sub {
     font-size: 1.1rem;
     font-weight: 300;
     color: rgba(245,242,236,0.6);
     text-align: center;
-    max-width: 560px;
+    max-width: 580px;
     line-height: 1.7;
     margin-bottom: 3rem;
     opacity: 0;
     animation: fadeUp 0.8s ease 0.6s forwards;
   }
 
-  /* ── EMAIL FORM ── */
+  .hero-sub em {
+    color: var(--gold);
+    font-style: normal;
+    font-weight: 400;
+  }
+
   .waitlist-form {
     display: flex;
     gap: 0;
@@ -265,11 +251,9 @@
     width: 100%;
   }
 
-  /* ── SCROLL INDICATOR ── */
   .scroll-hint {
     position: absolute;
-    bottom: 2.5rem;
-    left: 50%;
+    bottom: 2.5rem; left: 50%;
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;
@@ -290,13 +274,11 @@
   }
 
   .scroll-line {
-    width: 1px;
-    height: 40px;
+    width: 1px; height: 40px;
     background: linear-gradient(to bottom, var(--gold), transparent);
     animation: scrollPulse 2s ease infinite;
   }
 
-  /* ── STATS BAR ── */
   .stats-bar {
     position: relative;
     z-index: 1;
@@ -336,7 +318,6 @@
     text-transform: uppercase;
   }
 
-  /* ── FEATURES ── */
   .features {
     position: relative;
     z-index: 1;
@@ -383,8 +364,7 @@
     content: '';
     position: absolute;
     top: 0; left: 0;
-    width: 3px;
-    height: 0;
+    width: 3px; height: 0;
     background: var(--gold);
     transition: height 0.4s ease;
   }
@@ -393,14 +373,12 @@
   .feature-card:hover::before { height: 100%; }
 
   .feature-icon {
-    width: 44px;
-    height: 44px;
+    width: 44px; height: 44px;
     border: 1px solid var(--gold-border);
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 1.5rem;
-    position: relative;
   }
 
   .feature-icon svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
@@ -420,7 +398,20 @@
     font-weight: 300;
   }
 
-  /* ── HOW IT WORKS ── */
+  .feature-card-dim { position: relative; opacity: 0.5; }
+
+  .coming-soon-badge {
+    display: inline-block;
+    border: 1px solid rgba(200,168,75,0.3);
+    color: rgba(200,168,75,0.6);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    padding: 0.25rem 0.6rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
   .how {
     position: relative;
     z-index: 1;
@@ -430,21 +421,13 @@
     border-bottom: 1px solid rgba(200,168,75,0.1);
   }
 
-  .how-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
+  .how-inner { max-width: 1100px; margin: 0 auto; }
 
   .steps {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 3rem;
     margin-top: 4rem;
-    position: relative;
-  }
-
-  .step {
-    position: relative;
   }
 
   .step-num {
@@ -471,7 +454,6 @@
     font-weight: 300;
   }
 
-  /* ── PRICING ── */
   .pricing {
     position: relative;
     z-index: 1;
@@ -490,7 +472,6 @@
     margin-top: -2rem;
   }
 
-  /* Credit packs row */
   .credit-packs {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -509,9 +490,7 @@
     gap: 0.4rem;
   }
 
-  .credit-pack.best-value {
-    background: var(--black-3);
-  }
+  .credit-pack.best-value { background: var(--black-3); }
 
   .credit-pack.best-value::after {
     content: 'BEST VALUE';
@@ -542,29 +521,10 @@
     line-height: 1;
   }
 
-  .pack-price sup {
-    font-size: 1rem;
-    vertical-align: super;
-    color: var(--gold);
-  }
+  .pack-price sup { font-size: 1rem; vertical-align: super; color: var(--gold); }
+  .pack-desc { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: rgba(245,242,236,0.35); letter-spacing: 0.08em; margin-top: 0.25rem; }
+  .pack-per { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: rgba(200,168,75,0.6); letter-spacing: 0.08em; margin-top: 0.1rem; }
 
-  .pack-desc {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    color: rgba(245,242,236,0.35);
-    letter-spacing: 0.08em;
-    margin-top: 0.25rem;
-  }
-
-  .pack-per {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.6rem;
-    color: rgba(200,168,75,0.6);
-    letter-spacing: 0.08em;
-    margin-top: 0.1rem;
-  }
-
-  /* Founding member — full width card */
   .founding-card {
     background: var(--black-3);
     border: 1px solid var(--gold-border);
@@ -576,8 +536,7 @@
     content: '';
     position: absolute;
     top: 0; left: 0;
-    width: 4px;
-    height: 100%;
+    width: 4px; height: 100%;
     background: var(--gold);
   }
 
@@ -593,58 +552,14 @@
     text-transform: uppercase;
   }
 
-  .founding-tier {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
+  .founding-tier { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 1rem; }
+  .founding-price { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 700; color: var(--white); line-height: 1; margin-bottom: 0.25rem; }
+  .founding-price sup { font-size: 1.4rem; vertical-align: super; color: var(--gold); }
+  .founding-period { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: rgba(245,242,236,0.35); letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+  .founding-note { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 2rem; }
+  .founding-divider { height: 1px; background: rgba(200,168,75,0.15); margin-bottom: 2rem; }
 
-  .founding-price {
-    font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
-    font-weight: 700;
-    color: var(--white);
-    line-height: 1;
-    margin-bottom: 0.25rem;
-  }
-
-  .founding-price sup {
-    font-size: 1.4rem;
-    vertical-align: super;
-    color: var(--gold);
-  }
-
-  .founding-period {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    color: rgba(245,242,236,0.35);
-    letter-spacing: 0.1em;
-    margin-bottom: 0.5rem;
-  }
-
-  .founding-note {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--gold);
-    letter-spacing: 0.08em;
-    margin-bottom: 2rem;
-  }
-
-  .founding-divider {
-    height: 1px;
-    background: rgba(200,168,75,0.15);
-    margin-bottom: 2rem;
-  }
-
-  .founding-features {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
+  .founding-features { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
 
   .founding-features li {
     font-size: 0.88rem;
@@ -656,48 +571,8 @@
     line-height: 1.5;
   }
 
-  .founding-features li::before {
-    content: '◆';
-    font-size: 0.45rem;
-    color: var(--gold);
-    flex-shrink: 0;
-    margin-top: 0.45rem;
-  }
+  .founding-features li::before { content: '◆'; font-size: 0.45rem; color: var(--gold); flex-shrink: 0; margin-top: 0.45rem; }
 
-  .founding-economics {
-    background: rgba(200,168,75,0.04);
-    border: 1px solid rgba(200,168,75,0.12);
-    padding: 1.5rem;
-    margin-top: 1.5rem;
-  }
-
-  .economics-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    color: rgba(245,242,236,0.3);
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-
-  .economics-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.4rem 0;
-    border-bottom: 1px solid rgba(200,168,75,0.06);
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-  }
-
-  .economics-row:last-child { border-bottom: none; }
-
-  .economics-row .label { color: rgba(245,242,236,0.4); }
-  .economics-row .val { color: rgba(245,242,236,0.6); }
-  .economics-row.highlight .label { color: var(--gold); }
-  .economics-row.highlight .val { color: var(--gold); font-weight: 500; }
-
-  /* Forum free row */
   .forum-free {
     background: var(--black-2);
     border: 1px solid rgba(200,168,75,0.1);
@@ -709,11 +584,7 @@
     gap: 2rem;
   }
 
-  .forum-free-left {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-  }
+  .forum-free-left { display: flex; align-items: center; gap: 1.5rem; }
 
   .forum-free-badge {
     font-family: 'DM Mono', monospace;
@@ -726,19 +597,8 @@
     white-space: nowrap;
   }
 
-  .forum-free-label {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--white);
-  }
-
-  .forum-free-desc {
-    font-size: 0.85rem;
-    font-weight: 300;
-    color: rgba(245,242,236,0.4);
-    line-height: 1.5;
-  }
+  .forum-free-label { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--white); }
+  .forum-free-desc { font-size: 0.85rem; font-weight: 300; color: rgba(245,242,236,0.4); line-height: 1.5; }
 
   .forum-free-price {
     font-family: 'DM Mono', monospace;
@@ -758,7 +618,6 @@
     margin-bottom: 0.15rem;
   }
 
-  /* ── BOTTOM CTA ── */
   .cta {
     position: relative;
     z-index: 1;
@@ -771,8 +630,7 @@
 
   .cta-glow {
     position: absolute;
-    width: 500px;
-    height: 300px;
+    width: 500px; height: 300px;
     border-radius: 50%;
     background: radial-gradient(circle, rgba(200,168,75,0.06) 0%, transparent 70%);
     top: 50%; left: 50%;
@@ -780,38 +638,12 @@
     pointer-events: none;
   }
 
-  .cta h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 700;
-    margin-bottom: 1rem;
-    position: relative;
-  }
-
-  .cta p {
-    font-size: 1rem;
-    color: rgba(245,242,236,0.5);
-    margin-bottom: 3rem;
-    font-weight: 300;
-    position: relative;
-  }
-
-  .cta .waitlist-form {
-    margin: 0 auto;
-    opacity: 1;
-    animation: none;
-  }
-
+  .cta h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; margin-bottom: 1rem; position: relative; }
+  .cta p { font-size: 1rem; color: rgba(245,242,236,0.5); margin-bottom: 3rem; font-weight: 300; position: relative; }
+  .cta .waitlist-form { margin: 0 auto; opacity: 1; animation: none; }
   .cta .success-msg { margin: 0 auto; }
 
-  .offer-pills {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-    position: relative;
-  }
+  .offer-pills { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; position: relative; }
 
   .offer-pill {
     font-family: 'DM Mono', monospace;
@@ -830,21 +662,13 @@
     margin-bottom: 1.25rem;
     opacity: 0;
     animation: fadeUp 0.8s ease 0.7s forwards;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
-  .hero-offer-item {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    color: var(--gold);
-  }
+  .hero-offer-item { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--gold); }
+  .hero-offer-divider { color: rgba(200,168,75,0.3); font-size: 0.8rem; }
 
-  .hero-offer-divider {
-    color: rgba(200,168,75,0.3);
-    font-size: 0.8rem;
-  }
-
-  /* ── FOOTER ── */
   footer {
     position: relative;
     z-index: 1;
@@ -856,15 +680,8 @@
   }
 
   footer .nav-wordmark { font-size: 1rem; }
+  .footer-note { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(245,242,236,0.25); }
 
-  .footer-note {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    color: rgba(245,242,236,0.25);
-  }
-
-  /* ── FEATURE HERO ── */
   .feature-hero {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -877,14 +694,7 @@
     overflow: hidden;
   }
 
-  .feature-hero::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 4px;
-    height: 100%;
-    background: var(--gold);
-  }
+  .feature-hero::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--gold); }
 
   .feature-priority-badge {
     display: inline-block;
@@ -898,28 +708,10 @@
     text-transform: uppercase;
   }
 
-  .feature-hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 1rem;
-  }
+  .feature-hero-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--white); margin-bottom: 1rem; }
+  .feature-hero-desc { font-size: 0.95rem; line-height: 1.75; color: rgba(245,242,236,0.6); font-weight: 300; margin-bottom: 1.5rem; }
 
-  .feature-hero-desc {
-    font-size: 0.95rem;
-    line-height: 1.75;
-    color: rgba(245,242,236,0.6);
-    font-weight: 300;
-    margin-bottom: 1.5rem;
-  }
-
-  .feature-hero-bullets {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-  }
+  .feature-hero-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
 
   .feature-hero-bullets li {
     font-size: 0.88rem;
@@ -931,15 +723,8 @@
     line-height: 1.5;
   }
 
-  .feature-hero-bullets li::before {
-    content: '◆';
-    font-size: 0.45rem;
-    color: var(--gold);
-    flex-shrink: 0;
-    margin-top: 0.45rem;
-  }
+  .feature-hero-bullets li::before { content: '◆'; font-size: 0.45rem; color: var(--gold); flex-shrink: 0; margin-top: 0.45rem; }
 
-  /* ── AI DEMO MOCKUP ── */
   .ai-demo {
     background: var(--black);
     border: 1px solid rgba(200,168,75,0.2);
@@ -960,19 +745,8 @@
     border-bottom: 1px solid rgba(200,168,75,0.1);
   }
 
-  .ai-demo-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: rgba(245,242,236,0.15);
-  }
-
-  .ai-demo-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--gold);
-    letter-spacing: 0.1em;
-    margin-left: 0.5rem;
-  }
+  .ai-demo-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(245,242,236,0.15); }
+  .ai-demo-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.1em; margin-left: 0.5rem; }
 
   .ai-demo-body {
     padding: 1.25rem;
@@ -984,13 +758,7 @@
     max-height: 380px;
   }
 
-  .ai-msg {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    font-size: 0.82rem;
-    line-height: 1.6;
-  }
+  .ai-msg { display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.82rem; line-height: 1.6; }
 
   .ai-msg.user span {
     background: rgba(200,168,75,0.1);
@@ -1004,27 +772,10 @@
   }
 
   .ai-msg.bot { gap: 0.4rem; }
+  .ai-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--gold); letter-spacing: 0.1em; }
+  .ai-msg.bot > span:not(.ai-label):not(.ai-verdict) { color: rgba(245,242,236,0.7); font-weight: 300; }
 
-  .ai-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.6rem;
-    color: var(--gold);
-    letter-spacing: 0.1em;
-  }
-
-  .ai-msg.bot > span:not(.ai-label):not(.ai-verdict) {
-    color: rgba(245,242,236,0.7);
-    font-weight: 300;
-  }
-
-  .ai-list {
-    padding-left: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    color: rgba(245,242,236,0.6);
-    font-weight: 300;
-  }
+  .ai-list { padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.3rem; color: rgba(245,242,236,0.6); font-weight: 300; }
 
   .ai-verdict {
     display: inline-block;
@@ -1037,45 +788,11 @@
     align-self: flex-start;
   }
 
-  .ai-verdict.diy {
-    background: rgba(100,200,100,0.1);
-    border: 1px solid rgba(100,200,100,0.3);
-    color: rgba(150,230,150,0.9);
-  }
+  .ai-verdict.diy { background: rgba(100,200,100,0.1); border: 1px solid rgba(100,200,100,0.3); color: rgba(150,230,150,0.9); }
 
-  .features-secondary-label {
-    padding: 2.5rem 0 1.5rem;
-  }
+  .features-secondary-label { padding: 2.5rem 0 1.5rem; }
 
-  .feature-card-dim {
-    position: relative;
-    opacity: 0.5;
-  }
-
-  .coming-soon-badge {
-    display: inline-block;
-    border: 1px solid rgba(200,168,75,0.3);
-    color: rgba(200,168,75,0.6);
-    font-family: 'DM Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    padding: 0.25rem 0.6rem;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-  }
-
-  @media (max-width: 860px) {
-    .feature-hero { grid-template-columns: 1fr; }
-  }
-
-  /* ── ROADMAP ── */
-  .roadmap {
-    position: relative;
-    z-index: 1;
-    padding: 7rem 2rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
+  .roadmap { position: relative; z-index: 1; padding: 7rem 2rem; max-width: 1100px; margin: 0 auto; }
 
   .roadmap-grid {
     display: grid;
@@ -1086,86 +803,32 @@
     margin-top: 4rem;
   }
 
-  .roadmap-card {
-    background: var(--black-2);
-    padding: 2.5rem;
-    position: relative;
-  }
+  .roadmap-card { background: var(--black-2); padding: 2.5rem; position: relative; }
 
-  .roadmap-phase {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-  }
-
+  .roadmap-phase { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.5rem; }
   .roadmap-phase.active { color: var(--gold); }
   .roadmap-phase.next { color: rgba(200,168,75,0.5); }
   .roadmap-phase.future { color: rgba(245,242,236,0.2); }
 
-  .roadmap-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 1.25rem;
-  }
-
+  .roadmap-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 1.25rem; }
   .roadmap-card.dim .roadmap-title { color: rgba(245,242,236,0.4); }
 
-  .roadmap-items {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-  }
+  .roadmap-items { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
 
-  .roadmap-items li {
-    font-size: 0.88rem;
-    font-weight: 300;
-    color: rgba(245,242,236,0.55);
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    line-height: 1.5;
-  }
-
+  .roadmap-items li { font-size: 0.88rem; font-weight: 300; color: rgba(245,242,236,0.55); display: flex; align-items: flex-start; gap: 0.75rem; line-height: 1.5; }
   .roadmap-card.dim .roadmap-items li { color: rgba(245,242,236,0.25); }
-
-  .roadmap-items li::before {
-    content: '◆';
-    font-size: 0.45rem;
-    color: var(--gold);
-    flex-shrink: 0;
-    margin-top: 0.45rem;
-  }
-
+  .roadmap-items li::before { content: '◆'; font-size: 0.45rem; color: var(--gold); flex-shrink: 0; margin-top: 0.45rem; }
   .roadmap-card.dim .roadmap-items li::before { color: rgba(200,168,75,0.25); }
+  .roadmap-items li.done { color: rgba(245,242,236,0.35); }
+  .roadmap-items li.done::before { content: '✓'; color: rgba(100,200,100,0.6); font-size: 0.6rem; margin-top: 0.35rem; }
 
-  .roadmap-badge {
-    display: inline-block;
-    background: var(--gold);
-    color: var(--black);
-    font-family: 'DM Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.12em;
-    padding: 0.25rem 0.6rem;
-    margin-bottom: 1rem;
-  }
+  .roadmap-badge { display: inline-block; background: var(--gold); color: var(--black); font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; padding: 0.25rem 0.6rem; margin-bottom: 1rem; }
 
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes scrollPulse { 0%, 100% { opacity: 0.4; transform: scaleY(1); } 50% { opacity: 1; transform: scaleY(1.1); } }
 
-  @keyframes scrollPulse {
-    0%, 100% { opacity: 0.4; transform: scaleY(1); }
-    50% { opacity: 1; transform: scaleY(1.1); }
-  }
+  @media (max-width: 860px) { .feature-hero { grid-template-columns: 1fr; } }
 
-  /* ── RESPONSIVE ── */
   @media (max-width: 640px) {
     nav { padding: 1.25rem 1.5rem; }
     .waitlist-form { flex-direction: column; }
@@ -1184,7 +847,7 @@
 
 <!-- ANNOUNCEMENT BANNER -->
 <div class="announce-bar">
-  🔧 FOUNDING MEMBER <span>—</span> $149.99 ONE-TIME <span>—</span> LIFETIME ACCESS · 75 SESSIONS · 40% OFF REFILLS FOREVER
+  🔧 FOUNDING MEMBER <span>—</span> $149.99 ONE-TIME <span>—</span> LIFETIME ACCESS · 75 SESSIONS · 40% OFF REFILLS FOREVER <span>—</span> ROADSIDE READY
 </div>
 
 <!-- NAV -->
@@ -1213,7 +876,7 @@
   </h1>
 
   <p class="hero-sub">
-    TorqueIQ's AI Mechanic diagnoses your classic car's symptoms instantly — ranked causes, step-by-step repair guidance, and a clear DIY vs. shop call. Backed by a community of owners who've been there.
+    TorqueIQ's AI Mechanic diagnoses your classic car's symptoms instantly — ranked causes, step-by-step repair guidance, and a clear DIY vs. shop call. <em>Broke down on the side of the road? Open TorqueIQ.</em> Backed by a community of owners who've been there.
   </p>
 
   <div class="hero-offer">
@@ -1244,7 +907,7 @@
   </div>
   <div class="stat">
     <span class="stat-num">&lt; 60s</span>
-    <span class="stat-label">AI Mechanic response time</span>
+    <span class="stat-label">AI response — at home or roadside</span>
   </div>
   <div class="stat">
     <span class="stat-num">$9.99</span>
@@ -1257,7 +920,6 @@
   <p class="section-label">What you get</p>
   <h2 class="section-title">Built around one core promise — fix it yourself.</h2>
 
-  <!-- AI MECHANIC — HERO FEATURE -->
   <div class="feature-hero">
     <div class="feature-hero-left">
       <span class="feature-priority-badge">Core Feature</span>
@@ -1269,6 +931,8 @@
         <li>Step-by-step repair guidance once cause is confirmed</li>
         <li>Adapts when something doesn't match — moves to next likely cause</li>
         <li>DIY vs. shop threshold — always honest about the limits</li>
+        <li>Works roadside — open it the moment something goes wrong</li>
+        <li>Knows your mods — AI is aware of every upgrade on your car</li>
       </ul>
     </div>
     <div class="feature-hero-right">
@@ -1312,7 +976,6 @@
     </div>
   </div>
 
-  <!-- SECONDARY FEATURES GRID -->
   <div class="features-secondary-label">
     <p class="section-label" style="margin-bottom:0">Also included</p>
   </div>
@@ -1328,18 +991,34 @@
 
     <div class="feature-card">
       <div class="feature-icon">
-        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       </div>
-      <h3 class="feature-name">Make & Model Intelligence</h3>
-      <p class="feature-desc">Purpose-built for imported classics. The AI knows the quirks of a 1973 Mini Moke, a Triumph TR6, and an early Land Rover Series III — not generic advice pulled from a modern car database.</p>
+      <h3 class="feature-name">Roadside Troubleshooting</h3>
+      <p class="feature-desc">Broke down on the side of the road? Pull up TorqueIQ on your phone and start a session on the spot. Describe what just happened — the AI walks you through what to check, what to rule out, and whether you can drive it or need a tow.</p>
     </div>
 
     <div class="feature-card">
       <div class="feature-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
       </div>
-      <h3 class="feature-name">Vet Before You Buy</h3>
-      <p class="feature-desc">About to drop serious money on a classic? Run the make and model through TorqueIQ first. Know every common failure point, weak spot, and red flag before you hand over the cash.</p>
+      <h3 class="feature-name">Maintenance Log</h3>
+      <p class="feature-desc">Track every service on your car — oil changes, tune-ups, brake jobs. Log the date, mileage, cost, and next service interval. Your full service history in one place, always tied to the right vehicle.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+      </div>
+      <h3 class="feature-name">Mods Tracker</h3>
+      <p class="feature-desc">Document every upgrade and modification on your build. Category, description, install date, and notes — so the AI Mechanic knows exactly what's been changed when diagnosing your car.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <h3 class="feature-name">Make & Model Intelligence</h3>
+      <p class="feature-desc">Purpose-built for imported classics. The AI knows the quirks of a 1973 Mini Moke, a Triumph TR6, and an early Land Rover Series III — not generic advice pulled from a modern car database.</p>
     </div>
 
     <div class="feature-card feature-card-dim">
@@ -1362,23 +1041,23 @@
     <div class="steps">
       <div class="step">
         <div class="step-num">01</div>
-        <h3 class="step-title">Describe the problem</h3>
-        <p class="step-desc">Start a session with one symptom — what you hear, see, smell, or feel. No mechanical jargon required.</p>
+        <h3 class="step-title">Add your vehicle</h3>
+        <p class="step-desc">Build your garage — year, make, model, engine, mileage. Log your mods so the AI knows exactly what's been changed.</p>
       </div>
       <div class="step">
         <div class="step-num">02</div>
-        <h3 class="step-title">AI Mechanic responds</h3>
-        <p class="step-desc">Instantly get a ranked diagnosis, likely causes, and a clear recommendation — fix it yourself or take it in.</p>
+        <h3 class="step-title">Describe the problem</h3>
+        <p class="step-desc">Start a session anywhere — at home or on the side of the road. Tell the AI what you hear, see, smell, or feel. No jargon required.</p>
       </div>
       <div class="step">
         <div class="step-num">03</div>
-        <h3 class="step-title">Community weighs in</h3>
-        <p class="step-desc">Experienced owners who've had the same issue on the same car add real-world context and tips.</p>
+        <h3 class="step-title">AI Mechanic diagnoses</h3>
+        <p class="step-desc">Get ranked causes, a back-and-forth conversation to narrow it down, and a clear DIY vs. shop recommendation.</p>
       </div>
       <div class="step">
         <div class="step-num">04</div>
-        <h3 class="step-title">Find the part, fix the car</h3>
-        <p class="step-desc">The AI surfaces vetted suppliers for the exact part you need. Order it, get it done. No shop bill. No markup. No waiting room.</p>
+        <h3 class="step-title">Community weighs in</h3>
+        <p class="step-desc">Experienced owners who've had the same issue on the same car add real-world context. No question goes unanswered.</p>
       </div>
     </div>
   </div>
@@ -1390,7 +1069,6 @@
   <h2 class="section-title">Pay when your car breaks. Not when it doesn't.</h2>
   <p class="pricing-intro">The forum is free — always. When you need the AI Mechanic, buy a session pack. One session, one symptom, until it's solved.</p>
 
-  <!-- FORUM FREE ROW -->
   <div class="forum-free">
     <div class="forum-free-left">
       <span class="forum-free-badge">Always Free</span>
@@ -1405,7 +1083,6 @@
     </div>
   </div>
 
-  <!-- CREDIT PACKS -->
   <div class="credit-packs">
     <div class="credit-pack">
       <p class="pack-label">Single Session</p>
@@ -1413,14 +1090,12 @@
       <p class="pack-desc">1 diagnostic session</p>
       <p class="pack-per">$9.99 / session</p>
     </div>
-
     <div class="credit-pack">
       <p class="pack-label">3-Pack</p>
       <div class="pack-price"><sup>$</sup>24.99</div>
       <p class="pack-desc">3 diagnostic sessions</p>
       <p class="pack-per">$8.33 / session</p>
     </div>
-
     <div class="credit-pack best-value">
       <p class="pack-label">5-Pack</p>
       <div class="pack-price"><sup>$</sup>39.99</div>
@@ -1429,7 +1104,6 @@
     </div>
   </div>
 
-  <!-- FOUNDING MEMBER -->
   <div class="founding-card" style="margin-top:1px;">
     <div>
       <span class="founding-badge">Founding Member — Pre-Launch Only</span>
@@ -1448,25 +1122,30 @@
         <li>Early access to all new tools</li>
       </ul>
     </div>
+  </div>
 </section>
 
 <!-- ROADMAP -->
 <section class="roadmap">
-  <p class="section-label">What's coming</p>
+  <p class="section-label">What's built & what's coming</p>
   <h2 class="section-title">Built in phases. Useful from day one.</h2>
 
   <div class="roadmap-grid">
     <div class="roadmap-card">
-      <span class="roadmap-badge">Launching First</span>
+      <span class="roadmap-badge">Built</span>
       <p class="roadmap-phase active">Phase 01 — Foundation</p>
       <h3 class="roadmap-title">AI Mechanic + Community</h3>
       <ul class="roadmap-items">
-        <li>AI-powered conversational symptom diagnosis</li>
-        <li>DIY vs. shop recommendation engine</li>
-        <li>Make & model specific knowledge</li>
-        <li>Community forum with AI-first responses</li>
+        <li class="done">AI-powered conversational symptom diagnosis</li>
+        <li class="done">DIY vs. shop recommendation engine</li>
+        <li class="done">Make & model specific knowledge</li>
+        <li class="done">Community forum with AI-first responses</li>
+        <li class="done">Maintenance log — full service history per vehicle</li>
+        <li class="done">Mods tracker — AI-aware of your upgrades</li>
+        <li class="done">Session credits — buy only what you need</li>
+        <li class="done">Multi-vehicle garage</li>
+        <li class="done">Roadside-ready — works on any phone, anywhere</li>
         <li>Smart parts finder via vetted suppliers</li>
-        <li>Thread depth limits to keep AI responses focused</li>
       </ul>
     </div>
 
@@ -1474,11 +1153,12 @@
       <p class="roadmap-phase next">Phase 02 — Depth</p>
       <h3 class="roadmap-title">Expanded Intelligence</h3>
       <ul class="roadmap-items">
+        <li>AI Maintenance Plan — recommendations from your service history</li>
         <li>Deeper make & model coverage</li>
         <li>Repair cost estimator</li>
         <li>Pre-purchase inspection checklist by model</li>
         <li>Monthly breakdown digest by make</li>
-        <li>Saved garage — track your own car's history</li>
+        <li>Mileage-based service due alerts</li>
       </ul>
     </div>
 
@@ -1491,6 +1171,7 @@
         <li>Classified listings for classic car parts</li>
         <li>Mobile app</li>
         <li>Restoration project tracker</li>
+        <li>Motorcycle & off-road vehicle support</li>
       </ul>
     </div>
   </div>
@@ -1506,6 +1187,7 @@
     <span class="offer-pill">✦ 75 sessions included</span>
     <span class="offer-pill">✦ 40% off refills forever</span>
     <span class="offer-pill">✦ Rate locked for life</span>
+    <span class="offer-pill">✦ Roadside ready</span>
   </div>
   <div class="waitlist-form" id="ctaForm">
     <input type="email" id="ctaEmail" placeholder="your@email.com" />
@@ -1558,11 +1240,9 @@
     }
 
     document.getElementById(formId).style.display = 'none';
-    const success = document.getElementById(successId);
-    success.style.display = 'block';
+    document.getElementById(successId).style.display = 'block';
   }
 
-  // Intersection observer for scroll animations
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
