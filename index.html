@@ -4,835 +4,193 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TorqueIQ — AI-Powered Classic Car Diagnostics & Community</title>
-<meta name="description" content="TorqueIQ's AI Mechanic diagnoses your imported classic car instantly — ranked causes, step-by-step repair guidance, and a clear DIY vs. shop call. Backed by a community of owners who've been there.">
-<meta name="keywords" content="classic car diagnostics, AI mechanic, Mini Moke, Triumph, MG, Land Rover, imported classic cars, DIY car repair, classic car community, roadside breakdown">
+<meta name="description" content="TorqueIQ's AI Mechanic diagnoses your classic car instantly — ranked causes, step-by-step repair guidance, and a clear DIY vs. shop call. Backed by a community of owners who've been there.">
+<meta name="keywords" content="classic car diagnostics, AI mechanic, Mini Moke, Triumph, MG, Land Rover, imported classic cars, DIY car repair, classic car community">
 <meta name="author" content="TorqueIQ">
 <meta property="og:title" content="TorqueIQ — AI-Powered Classic Car Intelligence">
-<meta property="og:description" content="Stop guessing. Start wrenching with confidence. AI diagnostics built specifically for imported classic cars.">
+<meta property="og:description" content="Stop guessing. Start wrenching with confidence. AI diagnostics built specifically for classic cars.">
 <meta property="og:url" content="https://torqueiq.co">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="TorqueIQ — AI-Powered Classic Car Intelligence">
-<meta name="twitter:description" content="Stop guessing. Start wrenching with confidence. AI diagnostics built specifically for imported classic cars.">
+<meta name="twitter:description" content="Stop guessing. Start wrenching with confidence.">
 <link rel="canonical" href="https://torqueiq.co">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --black: #0d0d0d;
-    --black-2: #161616;
-    --black-3: #1f1f1f;
-    --gold: #c8a84b;
-    --gold-light: #e2c670;
-    --gold-dim: rgba(200, 168, 75, 0.15);
-    --gold-border: rgba(200, 168, 75, 0.3);
-    --white: #f5f2ec;
-    --gray: #888;
-    --gray-dim: rgba(255,255,255,0.06);
+    --black: #0d0d0d; --black-2: #161616; --black-3: #1f1f1f;
+    --gold: #c8a84b; --gold-light: #e2c670; --gold-dim: rgba(200,168,75,0.15); --gold-border: rgba(200,168,75,0.3);
+    --white: #f5f2ec; --gray: #888; --gray-dim: rgba(255,255,255,0.06);
   }
-
   html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.4; }
 
-  body {
-    background: var(--black);
-    color: var(--white);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
-    cursor: default;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.4;
-  }
-
-  .announce-bar {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 101;
-    background: var(--gold);
-    color: var(--black);
-    text-align: center;
-    padding: 0.6rem 2rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    font-weight: 500;
-  }
-
+  .announce-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 101; background: var(--gold); color: var(--black); text-align: center; padding: 0.6rem 2rem; font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.12em; font-weight: 500; }
   .announce-bar span { opacity: 0.6; margin: 0 0.75rem; }
 
-  nav {
-    position: fixed;
-    top: 36px; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.5rem 3rem;
-    border-bottom: 1px solid rgba(200,168,75,0.1);
-    background: rgba(13,13,13,0.85);
-    backdrop-filter: blur(12px);
-  }
-
+  nav { position: fixed; top: 36px; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem; border-bottom: 1px solid rgba(200,168,75,0.1); background: rgba(13,13,13,0.85); backdrop-filter: blur(12px); }
   .nav-logo { display: flex; align-items: center; gap: 0.75rem; }
   .nav-badge { width: 36px; height: 36px; }
-
-  .nav-wordmark {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    color: var(--white);
-  }
-
+  .nav-wordmark { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; letter-spacing: 0.05em; color: var(--white); }
   .nav-wordmark span { color: var(--gold); }
+  .nav-actions { display: flex; align-items: center; gap: 1rem; }
+  .nav-signin { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.12em; color: rgba(245,242,236,0.5); text-decoration: none; transition: color 0.2s; }
+  .nav-signin:hover { color: var(--white); }
+  .nav-launch { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.12em; background: var(--gold); color: var(--black); padding: 0.5rem 1.25rem; text-decoration: none; font-weight: 500; transition: background 0.2s; }
+  .nav-launch:hover { background: var(--gold-light); }
 
-  .nav-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    color: var(--gold);
-    border: 1px solid var(--gold-border);
-    padding: 0.3rem 0.75rem;
-    border-radius: 2px;
-    text-transform: uppercase;
-  }
-
-  .hero {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 14rem 2rem 6rem;
-    overflow: hidden;
-  }
-
-  .hero-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(200,168,75,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(200,168,75,0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 0%, transparent 100%);
-  }
-
-  .hero-glow {
-    position: absolute;
-    width: 600px; height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(200,168,75,0.08) 0%, transparent 70%);
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-  }
-
-  .hero-eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.25em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 2rem;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.2s forwards;
-  }
-
-  .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 7vw, 6rem);
-    font-weight: 900;
-    line-height: 1.0;
-    text-align: center;
-    max-width: 900px;
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.4s forwards;
-  }
-
+  .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 14rem 2rem 6rem; overflow: hidden; }
+  .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(200,168,75,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(200,168,75,0.04) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 0%, transparent 100%); }
+  .hero-glow { position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(200,168,75,0.08) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
+  .hero-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 7vw, 6rem); font-weight: 900; line-height: 1.0; text-align: center; max-width: 900px; margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards; }
   .hero-title .gold { color: var(--gold); }
   .hero-title .outline { -webkit-text-stroke: 1px var(--gold); color: transparent; }
+  .hero-sub { font-size: 1.1rem; font-weight: 300; color: rgba(245,242,236,0.6); text-align: center; max-width: 580px; line-height: 1.7; margin-bottom: 2.5rem; opacity: 0; animation: fadeUp 0.8s ease 0.6s forwards; }
+  .hero-sub em { color: var(--gold); font-style: normal; font-weight: 400; }
 
-  .hero-sub {
-    font-size: 1.1rem;
-    font-weight: 300;
-    color: rgba(245,242,236,0.6);
-    text-align: center;
-    max-width: 580px;
-    line-height: 1.7;
-    margin-bottom: 3rem;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.6s forwards;
-  }
+  .hero-cta-group { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; justify-content: center; opacity: 0; animation: fadeUp 0.8s ease 0.8s forwards; margin-bottom: 1.5rem; }
+  .btn-primary { font-family: 'DM Mono', monospace; font-size: 0.8rem; letter-spacing: 0.12em; font-weight: 500; background: var(--gold); color: var(--black); padding: 1rem 2rem; text-decoration: none; transition: background 0.2s; white-space: nowrap; }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-secondary { font-family: 'DM Mono', monospace; font-size: 0.8rem; letter-spacing: 0.12em; color: rgba(245,242,236,0.6); border: 1px solid rgba(200,168,75,0.3); padding: 1rem 2rem; text-decoration: none; transition: all 0.2s; white-space: nowrap; }
+  .btn-secondary:hover { color: var(--white); border-color: var(--gold); }
 
-  .hero-sub em {
-    color: var(--gold);
-    font-style: normal;
-    font-weight: 400;
-  }
+  .hero-offer { display: flex; align-items: center; gap: 0.75rem; opacity: 0; animation: fadeUp 0.8s ease 1s forwards; flex-wrap: wrap; justify-content: center; }
+  .hero-offer-item { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--gold); }
+  .hero-offer-divider { color: rgba(200,168,75,0.3); font-size: 0.8rem; }
 
-  .waitlist-form {
-    display: flex;
-    gap: 0;
-    max-width: 480px;
-    width: 100%;
-    border: 1px solid var(--gold-border);
-    border-radius: 3px;
-    overflow: hidden;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.8s forwards;
-    position: relative;
-    z-index: 2;
-  }
+  .scroll-hint { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; opacity: 0; animation: fadeUp 0.8s ease 1.4s forwards; z-index: 0; pointer-events: none; }
+  .scroll-hint span { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; color: rgba(245,242,236,0.3); text-transform: uppercase; }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollPulse 2s ease infinite; }
 
-  .waitlist-form input {
-    flex: 1;
-    background: rgba(200,168,75,0.05);
-    border: none;
-    outline: none;
-    padding: 1rem 1.25rem;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 300;
-    color: var(--white);
-    caret-color: var(--gold);
-  }
-
-  .waitlist-form input::placeholder { color: rgba(245,242,236,0.3); }
-
-  .waitlist-form button {
-    background: var(--gold);
-    border: none;
-    padding: 1rem 1.75rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--black);
-    cursor: pointer;
-    transition: background 0.2s ease;
-    white-space: nowrap;
-  }
-
-  .waitlist-form button:hover { background: var(--gold-light); }
-
-  .form-note {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    color: rgba(245,242,236,0.3);
-    margin-top: 1rem;
-    letter-spacing: 0.08em;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 1s forwards;
-  }
-
-  .success-msg {
-    display: none;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--gold);
-    letter-spacing: 0.1em;
-    text-align: center;
-    padding: 1rem;
-    border: 1px solid var(--gold-border);
-    border-radius: 3px;
-    max-width: 480px;
-    width: 100%;
-  }
-
-  .scroll-hint {
-    position: absolute;
-    bottom: 2.5rem; left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 1.4s forwards;
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  .scroll-hint span {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    color: rgba(245,242,236,0.3);
-    text-transform: uppercase;
-  }
-
-  .scroll-line {
-    width: 1px; height: 40px;
-    background: linear-gradient(to bottom, var(--gold), transparent);
-    animation: scrollPulse 2s ease infinite;
-  }
-
-  .stats-bar {
-    position: relative;
-    z-index: 1;
-    border-top: 1px solid rgba(200,168,75,0.1);
-    border-bottom: 1px solid rgba(200,168,75,0.1);
-    background: var(--black-2);
-    display: flex;
-    justify-content: center;
-    gap: 0;
-  }
-
-  .stat {
-    flex: 1;
-    max-width: 260px;
-    padding: 2rem;
-    text-align: center;
-    border-right: 1px solid rgba(200,168,75,0.1);
-  }
-
+  .stats-bar { position: relative; z-index: 1; border-top: 1px solid rgba(200,168,75,0.1); border-bottom: 1px solid rgba(200,168,75,0.1); background: var(--black-2); display: flex; justify-content: center; gap: 0; }
+  .stat { flex: 1; max-width: 260px; padding: 2rem; text-align: center; border-right: 1px solid rgba(200,168,75,0.1); }
   .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--gold); display: block; line-height: 1; margin-bottom: 0.5rem; }
+  .stat-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: rgba(245,242,236,0.4); text-transform: uppercase; }
 
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--gold);
-    display: block;
-    line-height: 1;
-    margin-bottom: 0.5rem;
-  }
+  .features { position: relative; z-index: 1; padding: 7rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .section-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; margin-bottom: 1.25rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700; line-height: 1.15; margin-bottom: 4rem; max-width: 600px; }
 
-  .stat-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    color: rgba(245,242,236,0.4);
-    text-transform: uppercase;
-  }
+  .feature-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; background: var(--black-2); border: 1px solid var(--gold-border); padding: 3rem; margin-bottom: 1px; position: relative; overflow: hidden; }
+  .feature-hero::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--gold); }
+  .feature-priority-badge { display: inline-block; background: var(--gold); color: var(--black); font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; padding: 0.3rem 0.75rem; margin-bottom: 1.25rem; text-transform: uppercase; }
+  .feature-hero-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--white); margin-bottom: 1rem; }
+  .feature-hero-desc { font-size: 0.95rem; line-height: 1.75; color: rgba(245,242,236,0.6); font-weight: 300; margin-bottom: 1.5rem; }
+  .feature-hero-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .feature-hero-bullets li { font-size: 0.88rem; font-weight: 300; color: rgba(245,242,236,0.7); display: flex; align-items: flex-start; gap: 0.75rem; line-height: 1.5; }
+  .feature-hero-bullets li::before { content: '◆'; font-size: 0.45rem; color: var(--gold); flex-shrink: 0; margin-top: 0.45rem; }
 
-  .features {
-    position: relative;
-    z-index: 1;
-    padding: 7rem 2rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
+  .ai-demo { background: var(--black); border: 1px solid rgba(200,168,75,0.2); border-radius: 4px; overflow: hidden; height: 100%; min-height: 280px; display: flex; flex-direction: column; }
+  .ai-demo-header { background: var(--black-3); padding: 0.75rem 1rem; display: flex; align-items: center; gap: 0.4rem; border-bottom: 1px solid rgba(200,168,75,0.1); }
+  .ai-demo-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(245,242,236,0.15); }
+  .ai-demo-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.1em; margin-left: 0.5rem; }
+  .ai-demo-body { padding: 1.25rem; display: flex; flex-direction: column; gap: 1rem; flex: 1; overflow-y: auto; max-height: 380px; }
+  .ai-msg { display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.82rem; line-height: 1.6; }
+  .ai-msg.user span { background: rgba(200,168,75,0.1); border: 1px solid rgba(200,168,75,0.2); padding: 0.75rem 1rem; border-radius: 2px; color: rgba(245,242,236,0.8); align-self: flex-end; max-width: 85%; font-style: italic; }
+  .ai-msg.bot { gap: 0.4rem; }
+  .ai-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--gold); letter-spacing: 0.1em; }
+  .ai-msg.bot > span:not(.ai-label):not(.ai-verdict) { color: rgba(245,242,236,0.7); font-weight: 300; }
+  .ai-list { padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.3rem; color: rgba(245,242,236,0.6); font-weight: 300; }
+  .ai-verdict { display: inline-block; font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.08em; padding: 0.35rem 0.75rem; border-radius: 2px; margin-top: 0.25rem; align-self: flex-start; }
+  .ai-verdict.diy { background: rgba(100,200,100,0.1); border: 1px solid rgba(100,200,100,0.3); color: rgba(150,230,150,0.9); }
 
-  .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.25em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 1.25rem;
-  }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    font-weight: 700;
-    line-height: 1.15;
-    margin-bottom: 4rem;
-    max-width: 600px;
-  }
-
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background: rgba(200,168,75,0.1);
-    border: 1px solid rgba(200,168,75,0.1);
-  }
-
-  .feature-card {
-    background: var(--black-2);
-    padding: 2.5rem;
-    transition: background 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .feature-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px; height: 0;
-    background: var(--gold);
-    transition: height 0.4s ease;
-  }
-
+  .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(200,168,75,0.1); border: 1px solid rgba(200,168,75,0.1); }
+  .feature-card { background: var(--black-2); padding: 2.5rem; transition: background 0.3s ease; position: relative; overflow: hidden; }
+  .feature-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0; background: var(--gold); transition: height 0.4s ease; }
   .feature-card:hover { background: var(--black-3); }
   .feature-card:hover::before { height: 100%; }
-
-  .feature-icon {
-    width: 44px; height: 44px;
-    border: 1px solid var(--gold-border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-  }
-
+  .feature-icon { width: 44px; height: 44px; border: 1px solid var(--gold-border); display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
   .feature-icon svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
-
-  .feature-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-    color: var(--white);
-  }
-
-  .feature-desc {
-    font-size: 0.9rem;
-    line-height: 1.7;
-    color: rgba(245,242,236,0.5);
-    font-weight: 300;
-  }
-
+  .feature-name { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--white); }
+  .feature-desc { font-size: 0.9rem; line-height: 1.7; color: rgba(245,242,236,0.5); font-weight: 300; }
   .feature-card-dim { position: relative; opacity: 0.5; }
+  .coming-soon-badge { display: inline-block; border: 1px solid rgba(200,168,75,0.3); color: rgba(200,168,75,0.6); font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; padding: 0.25rem 0.6rem; margin-bottom: 1rem; text-transform: uppercase; }
+  .features-secondary-label { padding: 2.5rem 0 1.5rem; }
 
-  .coming-soon-badge {
-    display: inline-block;
-    border: 1px solid rgba(200,168,75,0.3);
-    color: rgba(200,168,75,0.6);
-    font-family: 'DM Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    padding: 0.25rem 0.6rem;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-  }
-
-  .how {
-    position: relative;
-    z-index: 1;
-    background: var(--black-2);
-    padding: 7rem 2rem;
-    border-top: 1px solid rgba(200,168,75,0.1);
-    border-bottom: 1px solid rgba(200,168,75,0.1);
-  }
-
+  .how { position: relative; z-index: 1; background: var(--black-2); padding: 7rem 2rem; border-top: 1px solid rgba(200,168,75,0.1); border-bottom: 1px solid rgba(200,168,75,0.1); }
   .how-inner { max-width: 1100px; margin: 0 auto; }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; margin-top: 4rem; }
+  .step-num { font-family: 'Playfair Display', serif; font-size: 4rem; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 1rem; }
+  .step-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 0.75rem; }
+  .step-desc { font-size: 0.88rem; line-height: 1.7; color: rgba(245,242,236,0.45); font-weight: 300; }
 
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 3rem;
-    margin-top: 4rem;
-  }
-
-  .step-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 4rem;
-    font-weight: 900;
-    color: var(--gold);
-    line-height: 1;
-    margin-bottom: 1rem;
-  }
-
-  .step-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.75rem;
-  }
-
-  .step-desc {
-    font-size: 0.88rem;
-    line-height: 1.7;
-    color: rgba(245,242,236,0.45);
-    font-weight: 300;
-  }
-
-  .pricing {
-    position: relative;
-    z-index: 1;
-    padding: 7rem 2rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .pricing-intro {
-    font-size: 0.95rem;
-    font-weight: 300;
-    color: rgba(245,242,236,0.5);
-    line-height: 1.7;
-    max-width: 540px;
-    margin-bottom: 4rem;
-    margin-top: -2rem;
-  }
-
-  .credit-packs {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: rgba(200,168,75,0.1);
-    border: 1px solid rgba(200,168,75,0.1);
-    margin-bottom: 1px;
-  }
-
-  .credit-pack {
-    background: var(--black-2);
-    padding: 2rem 2.5rem;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-
+  .pricing { position: relative; z-index: 1; padding: 7rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .pricing-intro { font-size: 0.95rem; font-weight: 300; color: rgba(245,242,236,0.5); line-height: 1.7; max-width: 540px; margin-bottom: 4rem; margin-top: -2rem; }
+  .credit-packs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(200,168,75,0.1); border: 1px solid rgba(200,168,75,0.1); margin-bottom: 1px; }
+  .credit-pack { background: var(--black-2); padding: 2rem 2.5rem; position: relative; display: flex; flex-direction: column; gap: 0.4rem; }
   .credit-pack.best-value { background: var(--black-3); }
-
-  .credit-pack.best-value::after {
-    content: 'BEST VALUE';
-    position: absolute;
-    top: -1px; right: 2rem;
-    background: var(--gold);
-    color: var(--black);
-    font-family: 'DM Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    padding: 0.3rem 0.75rem;
-  }
-
-  .pack-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 0.75rem;
-  }
-
-  .pack-price {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--white);
-    line-height: 1;
-  }
-
+  .credit-pack.best-value::after { content: 'BEST VALUE'; position: absolute; top: -1px; right: 2rem; background: var(--gold); color: var(--black); font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; padding: 0.3rem 0.75rem; }
+  .pack-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.75rem; }
+  .pack-price { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--white); line-height: 1; }
   .pack-price sup { font-size: 1rem; vertical-align: super; color: var(--gold); }
   .pack-desc { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: rgba(245,242,236,0.35); letter-spacing: 0.08em; margin-top: 0.25rem; }
   .pack-per { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: rgba(200,168,75,0.6); letter-spacing: 0.08em; margin-top: 0.1rem; }
 
-  .founding-card {
-    background: var(--black-3);
-    border: 1px solid var(--gold-border);
-    padding: 3rem;
-    position: relative;
-  }
-
-  .founding-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 4px; height: 100%;
-    background: var(--gold);
-  }
-
-  .founding-badge {
-    display: inline-block;
-    background: var(--gold);
-    color: var(--black);
-    font-family: 'DM Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    padding: 0.3rem 0.75rem;
-    margin-bottom: 1.25rem;
-    text-transform: uppercase;
-  }
-
+  .founding-card { background: var(--black-3); border: 1px solid var(--gold-border); padding: 3rem; position: relative; margin-top: 1px; }
+  .founding-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--gold); }
+  .founding-badge { display: inline-block; background: var(--gold); color: var(--black); font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; padding: 0.3rem 0.75rem; margin-bottom: 1.25rem; text-transform: uppercase; }
   .founding-tier { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 1rem; }
   .founding-price { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 700; color: var(--white); line-height: 1; margin-bottom: 0.25rem; }
   .founding-price sup { font-size: 1.4rem; vertical-align: super; color: var(--gold); }
   .founding-period { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: rgba(245,242,236,0.35); letter-spacing: 0.1em; margin-bottom: 0.5rem; }
   .founding-note { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 2rem; }
   .founding-divider { height: 1px; background: rgba(200,168,75,0.15); margin-bottom: 2rem; }
-
-  .founding-features { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
-
-  .founding-features li {
-    font-size: 0.88rem;
-    font-weight: 300;
-    color: rgba(245,242,236,0.7);
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    line-height: 1.5;
-  }
-
+  .founding-features { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; }
+  .founding-features li { font-size: 0.88rem; font-weight: 300; color: rgba(245,242,236,0.7); display: flex; align-items: flex-start; gap: 0.75rem; line-height: 1.5; }
   .founding-features li::before { content: '◆'; font-size: 0.45rem; color: var(--gold); flex-shrink: 0; margin-top: 0.45rem; }
 
-  .forum-free {
-    background: var(--black-2);
-    border: 1px solid rgba(200,168,75,0.1);
-    border-top: none;
-    padding: 1.75rem 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-  }
-
+  .forum-free { background: var(--black-2); border: 1px solid rgba(200,168,75,0.1); border-top: none; padding: 1.75rem 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
   .forum-free-left { display: flex; align-items: center; gap: 1.5rem; }
-
-  .forum-free-badge {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    color: var(--gold);
-    border: 1px solid var(--gold-border);
-    padding: 0.3rem 0.75rem;
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
-
+  .forum-free-badge { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--gold); border: 1px solid var(--gold-border); padding: 0.3rem 0.75rem; text-transform: uppercase; white-space: nowrap; }
   .forum-free-label { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--white); }
   .forum-free-desc { font-size: 0.85rem; font-weight: 300; color: rgba(245,242,236,0.4); line-height: 1.5; }
-
-  .forum-free-price {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.9rem;
-    color: rgba(245,242,236,0.4);
-    letter-spacing: 0.05em;
-    white-space: nowrap;
-  }
-
-  .forum-free-price strong {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.75rem;
-    color: var(--white);
-    font-weight: 700;
-    display: block;
-    line-height: 1;
-    margin-bottom: 0.15rem;
-  }
-
-  .cta {
-    position: relative;
-    z-index: 1;
-    background: var(--black-2);
-    border-top: 1px solid rgba(200,168,75,0.15);
-    padding: 7rem 2rem;
-    text-align: center;
-    overflow: hidden;
-  }
-
-  .cta-glow {
-    position: absolute;
-    width: 500px; height: 300px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(200,168,75,0.06) 0%, transparent 70%);
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-  }
-
-  .cta h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; margin-bottom: 1rem; position: relative; }
-  .cta p { font-size: 1rem; color: rgba(245,242,236,0.5); margin-bottom: 3rem; font-weight: 300; position: relative; }
-  .cta .waitlist-form { margin: 0 auto; opacity: 1; animation: none; }
-  .cta .success-msg { margin: 0 auto; }
-
-  .offer-pills { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; position: relative; }
-
-  .offer-pill {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    color: var(--gold);
-    border: 1px solid var(--gold-border);
-    padding: 0.4rem 1rem;
-    border-radius: 2px;
-  }
-
-  .hero-offer {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1.25rem;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.7s forwards;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .hero-offer-item { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--gold); }
-  .hero-offer-divider { color: rgba(200,168,75,0.3); font-size: 0.8rem; }
-
-  footer {
-    position: relative;
-    z-index: 1;
-    border-top: 1px solid rgba(200,168,75,0.1);
-    padding: 2rem 3rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  footer .nav-wordmark { font-size: 1rem; }
-  .footer-note { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(245,242,236,0.25); }
-
-  .feature-hero {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    background: var(--black-2);
-    border: 1px solid var(--gold-border);
-    padding: 3rem;
-    margin-bottom: 1px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .feature-hero::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--gold); }
-
-  .feature-priority-badge {
-    display: inline-block;
-    background: var(--gold);
-    color: var(--black);
-    font-family: 'DM Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    padding: 0.3rem 0.75rem;
-    margin-bottom: 1.25rem;
-    text-transform: uppercase;
-  }
-
-  .feature-hero-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--white); margin-bottom: 1rem; }
-  .feature-hero-desc { font-size: 0.95rem; line-height: 1.75; color: rgba(245,242,236,0.6); font-weight: 300; margin-bottom: 1.5rem; }
-
-  .feature-hero-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-
-  .feature-hero-bullets li {
-    font-size: 0.88rem;
-    font-weight: 300;
-    color: rgba(245,242,236,0.7);
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    line-height: 1.5;
-  }
-
-  .feature-hero-bullets li::before { content: '◆'; font-size: 0.45rem; color: var(--gold); flex-shrink: 0; margin-top: 0.45rem; }
-
-  .ai-demo {
-    background: var(--black);
-    border: 1px solid rgba(200,168,75,0.2);
-    border-radius: 4px;
-    overflow: hidden;
-    height: 100%;
-    min-height: 280px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .ai-demo-header {
-    background: var(--black-3);
-    padding: 0.75rem 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    border-bottom: 1px solid rgba(200,168,75,0.1);
-  }
-
-  .ai-demo-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(245,242,236,0.15); }
-  .ai-demo-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.1em; margin-left: 0.5rem; }
-
-  .ai-demo-body {
-    padding: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    flex: 1;
-    overflow-y: auto;
-    max-height: 380px;
-  }
-
-  .ai-msg { display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.82rem; line-height: 1.6; }
-
-  .ai-msg.user span {
-    background: rgba(200,168,75,0.1);
-    border: 1px solid rgba(200,168,75,0.2);
-    padding: 0.75rem 1rem;
-    border-radius: 2px;
-    color: rgba(245,242,236,0.8);
-    align-self: flex-end;
-    max-width: 85%;
-    font-style: italic;
-  }
-
-  .ai-msg.bot { gap: 0.4rem; }
-  .ai-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--gold); letter-spacing: 0.1em; }
-  .ai-msg.bot > span:not(.ai-label):not(.ai-verdict) { color: rgba(245,242,236,0.7); font-weight: 300; }
-
-  .ai-list { padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.3rem; color: rgba(245,242,236,0.6); font-weight: 300; }
-
-  .ai-verdict {
-    display: inline-block;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.08em;
-    padding: 0.35rem 0.75rem;
-    border-radius: 2px;
-    margin-top: 0.25rem;
-    align-self: flex-start;
-  }
-
-  .ai-verdict.diy { background: rgba(100,200,100,0.1); border: 1px solid rgba(100,200,100,0.3); color: rgba(150,230,150,0.9); }
-
-  .features-secondary-label { padding: 2.5rem 0 1.5rem; }
+  .forum-free-price { font-family: 'DM Mono', monospace; font-size: 0.9rem; color: rgba(245,242,236,0.4); letter-spacing: 0.05em; white-space: nowrap; }
+  .forum-free-price strong { font-family: 'Playfair Display', serif; font-size: 1.75rem; color: var(--white); font-weight: 700; display: block; line-height: 1; margin-bottom: 0.15rem; }
 
   .roadmap { position: relative; z-index: 1; padding: 7rem 2rem; max-width: 1100px; margin: 0 auto; }
-
-  .roadmap-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1px;
-    background: rgba(200,168,75,0.1);
-    border: 1px solid rgba(200,168,75,0.1);
-    margin-top: 4rem;
-  }
-
+  .roadmap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: rgba(200,168,75,0.1); border: 1px solid rgba(200,168,75,0.1); margin-top: 4rem; }
   .roadmap-card { background: var(--black-2); padding: 2.5rem; position: relative; }
-
   .roadmap-phase { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.5rem; }
   .roadmap-phase.active { color: var(--gold); }
   .roadmap-phase.next { color: rgba(200,168,75,0.5); }
   .roadmap-phase.future { color: rgba(245,242,236,0.2); }
-
   .roadmap-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 1.25rem; }
   .roadmap-card.dim .roadmap-title { color: rgba(245,242,236,0.4); }
-
   .roadmap-items { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-
   .roadmap-items li { font-size: 0.88rem; font-weight: 300; color: rgba(245,242,236,0.55); display: flex; align-items: flex-start; gap: 0.75rem; line-height: 1.5; }
   .roadmap-card.dim .roadmap-items li { color: rgba(245,242,236,0.25); }
   .roadmap-items li::before { content: '◆'; font-size: 0.45rem; color: var(--gold); flex-shrink: 0; margin-top: 0.45rem; }
   .roadmap-card.dim .roadmap-items li::before { color: rgba(200,168,75,0.25); }
   .roadmap-items li.done { color: rgba(245,242,236,0.35); }
   .roadmap-items li.done::before { content: '✓'; color: rgba(100,200,100,0.6); font-size: 0.6rem; margin-top: 0.35rem; }
-
   .roadmap-badge { display: inline-block; background: var(--gold); color: var(--black); font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; padding: 0.25rem 0.6rem; margin-bottom: 1rem; }
 
+  .cta { position: relative; z-index: 1; background: var(--black-2); border-top: 1px solid rgba(200,168,75,0.15); padding: 7rem 2rem; text-align: center; overflow: hidden; }
+  .cta-glow { position: absolute; width: 500px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(200,168,75,0.06) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
+  .cta h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; margin-bottom: 1rem; position: relative; }
+  .cta p { font-size: 1rem; color: rgba(245,242,236,0.5); margin-bottom: 2rem; font-weight: 300; position: relative; max-width: 560px; margin-left: auto; margin-right: auto; }
+  .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; margin-bottom: 2rem; }
+  .offer-pills { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+  .offer-pill { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--gold); border: 1px solid var(--gold-border); padding: 0.4rem 1rem; border-radius: 2px; }
+
+  footer { position: relative; z-index: 1; border-top: 1px solid rgba(200,168,75,0.1); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; }
+  footer .nav-wordmark { font-size: 1rem; }
+  .footer-note { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(245,242,236,0.25); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(245,242,236,0.25); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: rgba(245,242,236,0.5); }
+
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes scrollPulse { 0%, 100% { opacity: 0.4; transform: scaleY(1); } 50% { opacity: 1; transform: scaleY(1.1); } }
+  @keyframes scrollPulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
 
   @media (max-width: 860px) { .feature-hero { grid-template-columns: 1fr; } }
-
   @media (max-width: 640px) {
     nav { padding: 1.25rem 1.5rem; }
-    .waitlist-form { flex-direction: column; }
-    .waitlist-form button { padding: 0.875rem; }
+    .nav-signin { display: none; }
     .stats-bar { flex-direction: column; }
     .stat { border-right: none; border-bottom: 1px solid rgba(200,168,75,0.1); }
     footer { flex-direction: column; gap: 1rem; text-align: center; }
@@ -845,89 +203,74 @@
 </head>
 <body>
 
-<!-- ANNOUNCEMENT BANNER -->
 <div class="announce-bar">
-  🔧 FOUNDING MEMBER <span>—</span> $149.99 ONE-TIME <span>—</span> LIFETIME ACCESS · 75 SESSIONS · 40% OFF REFILLS FOREVER <span>—</span> ROADSIDE READY
+  🔧 FOUNDING MEMBER <span>—</span> $149.99 ONE-TIME <span>—</span> 75 SESSIONS · 40% OFF REFILLS FOREVER <span>—</span> WHILE AVAILABLE
 </div>
 
-<!-- NAV -->
 <nav>
   <div class="nav-logo">
-    <svg class="nav-badge" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg class="nav-badge" viewBox="0 0 36 36" fill="none">
       <path d="M18 3 L31 8 L31 20 Q31 29 18 33 Q5 29 5 20 L5 8 Z" fill="#0d0d0d" stroke="#c8a84b" stroke-width="1"/>
       <polygon points="19.5,9 13,19 18,19 16.5,27 24,17 19,17" fill="#c8a84b"/>
     </svg>
     <span class="nav-wordmark">Torque<span>IQ</span></span>
   </div>
-  <span class="nav-tag">Coming Soon</span>
+  <div class="nav-actions">
+    <a href="https://app.torqueiq.co/login" class="nav-signin">Sign In</a>
+    <a href="https://app.torqueiq.co/signup" class="nav-launch">Launch App →</a>
+  </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
-
-  <p class="hero-eyebrow">AI-Powered Classic Car Intelligence</p>
-
+  <p class="hero-eyebrow">AI-Powered Classic Car Intelligence — Now Live</p>
   <h1 class="hero-title">
     Stop guessing.<br>
     <span class="outline">Start wrenching</span><br>
     with <span class="gold">confidence.</span>
   </h1>
-
   <p class="hero-sub">
     TorqueIQ's AI Mechanic diagnoses your classic car's symptoms instantly — ranked causes, step-by-step repair guidance, and a clear DIY vs. shop call. <em>Broke down on the side of the road? Open TorqueIQ.</em> Backed by a community of owners who've been there.
   </p>
-
+  <div class="hero-cta-group">
+    <a href="https://app.torqueiq.co/signup" class="btn-primary">Create Free Account</a>
+    <a href="https://app.torqueiq.co/login" class="btn-secondary">Sign In →</a>
+  </div>
   <div class="hero-offer">
-    <span class="hero-offer-item">✦ Founding Member — $149.99 lifetime</span>
+    <span class="hero-offer-item">✦ Founding Member — $149.99 one-time</span>
     <span class="hero-offer-divider">·</span>
     <span class="hero-offer-item">75 sessions included</span>
     <span class="hero-offer-divider">·</span>
     <span class="hero-offer-item">40% off refills forever</span>
+    <span class="hero-offer-divider">·</span>
+    <span class="hero-offer-item">While available</span>
   </div>
-
-  <div class="waitlist-form" id="heroForm">
-    <input type="email" id="heroEmail" placeholder="your@email.com" />
-    <button onclick="handleSignup('heroEmail', 'heroForm', 'heroSuccess')">Claim Founding Rate</button>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
   </div>
-  <div class="success-msg" id="heroSuccess">✦ You're on the list. We'll reach out when TorqueIQ launches.</div>
-  <p class="form-note">Pre-launch only · No credit card required</p>
 </section>
 
-<!-- STATS -->
 <div class="stats-bar">
-  <div class="stat">
-    <span class="stat-num">$150+</span>
-    <span class="stat-label">Average shop diagnostic fee - sometimes for a $20 fix</span>
-  </div>
-  <div class="stat">
-    <span class="stat-num">72%</span>
-    <span class="stat-label">Of repairs are DIY-able</span>
-  </div>
-  <div class="stat">
-    <span class="stat-num">&lt; 60s</span>
-    <span class="stat-label">AI response — at home or roadside</span>
-  </div>
-  <div class="stat">
-    <span class="stat-num">$9.99</span>
-    <span class="stat-label">Per diagnostic session</span>
-  </div>
+  <div class="stat"><span class="stat-num">$150+</span><span class="stat-label">Average shop diagnostic fee — sometimes for a $20 fix</span></div>
+  <div class="stat"><span class="stat-num">72%</span><span class="stat-label">Of repairs are DIY-able with the right guidance</span></div>
+  <div class="stat"><span class="stat-num">&lt; 60s</span><span class="stat-label">AI response — at home or roadside</span></div>
+  <div class="stat"><span class="stat-num">$9.99</span><span class="stat-label">Per diagnostic session</span></div>
 </div>
 
-<!-- FEATURES -->
 <section class="features">
   <p class="section-label">What you get</p>
   <h2 class="section-title">Built around one core promise — fix it yourself.</h2>
 
   <div class="feature-hero">
-    <div class="feature-hero-left">
+    <div>
       <span class="feature-priority-badge">Core Feature</span>
       <h3 class="feature-hero-title">AI Mechanic</h3>
       <p class="feature-hero-desc">Not a one-shot answer — a real diagnostic conversation. Describe your symptom, get a ranked first response, then go back and forth until you have a confident fix. The AI remembers every reply in the thread and narrows the diagnosis with each exchange.</p>
       <ul class="feature-hero-bullets">
         <li>Conversational — replies narrow the diagnosis in real time</li>
-        <li>Make & model specific — Mini, Triumph, MG, Moke, Fiat, Land Rover, VW Bus</li>
+        <li>Make & model specific — Mini, Triumph, MG, Moke, Fiat, Land Rover, VW Bus, American muscle and more</li>
         <li>Step-by-step repair guidance once cause is confirmed</li>
         <li>Adapts when something doesn't match — moves to next likely cause</li>
         <li>DIY vs. shop threshold — always honest about the limits</li>
@@ -935,32 +278,24 @@
         <li>Knows your mods — AI is aware of every upgrade on your car</li>
       </ul>
     </div>
-    <div class="feature-hero-right">
+    <div>
       <div class="ai-demo">
         <div class="ai-demo-header">
-          <span class="ai-demo-dot"></span>
-          <span class="ai-demo-dot"></span>
-          <span class="ai-demo-dot"></span>
+          <span class="ai-demo-dot"></span><span class="ai-demo-dot"></span><span class="ai-demo-dot"></span>
           <span class="ai-demo-label">AI Mechanic — 1973 Mini Moke</span>
         </div>
         <div class="ai-demo-body">
-          <div class="ai-msg user">
-            <span>Won't start. Single click when I turn the key.</span>
-          </div>
+          <div class="ai-msg user"><span>Won't start. Single click when I turn the key.</span></div>
           <div class="ai-msg bot">
             <span class="ai-label">TorqueIQ</span>
             <span>Single click points to a current problem, not a mechanical one. Three likely causes in order: weak battery, bad ground strap, or starter solenoid. Did you try jumping it?</span>
           </div>
-          <div class="ai-msg user">
-            <span>Yeah tried jumping it. Still just one click.</span>
-          </div>
+          <div class="ai-msg user"><span>Yeah tried jumping it. Still just one click.</span></div>
           <div class="ai-msg bot">
             <span class="ai-label">TorqueIQ</span>
             <span>Battery's ruled out then. Where is the click coming from — engine bay near the firewall, or somewhere on the dash?</span>
           </div>
-          <div class="ai-msg user">
-            <span>Engine bay, near the firewall.</span>
-          </div>
+          <div class="ai-msg user"><span>Engine bay, near the firewall.</span></div>
           <div class="ai-msg bot">
             <span class="ai-label">TorqueIQ</span>
             <span>That's your starter solenoid. Here's how to confirm and replace it yourself:</span>
@@ -976,55 +311,36 @@
     </div>
   </div>
 
-  <div class="features-secondary-label">
-    <p class="section-label" style="margin-bottom:0">Also included</p>
-  </div>
+  <div class="features-secondary-label"><p class="section-label" style="margin-bottom:0">Also included</p></div>
 
   <div class="features-grid">
     <div class="feature-card">
-      <div class="feature-icon">
-        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-      </div>
-      <h3 class="feature-name">Owner Community</h3>
-      <p class="feature-desc">Every forum post gets an AI Mechanic response first, then experienced owners who've fixed the same problem on the same car pile on. Human knowledge layered on top of AI — no question goes cold.</p>
+      <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+      <h3 class="feature-name">Owner Community Forum</h3>
+      <p class="feature-desc">Every forum post gets an AI Mechanic response first, then experienced owners pile on. Human knowledge layered on top of AI — no question goes cold. Always free.</p>
     </div>
-
     <div class="feature-card">
-      <div class="feature-icon">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      </div>
-      <h3 class="feature-name">Roadside Troubleshooting</h3>
-      <p class="feature-desc">Broke down on the side of the road? Pull up TorqueIQ on your phone and start a session on the spot. Describe what just happened — the AI walks you through what to check, what to rule out, and whether you can drive it or need a tow.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">
-        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-      </div>
+      <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
       <h3 class="feature-name">Maintenance Log</h3>
-      <p class="feature-desc">Track every service on your car — oil changes, tune-ups, brake jobs. Log the date, mileage, cost, and next service interval. Your full service history in one place, always tied to the right vehicle.</p>
+      <p class="feature-desc">Track every service — oil changes, tune-ups, brake jobs. Log date, mileage, cost, and next service interval. Full service history per vehicle. Supports miles and kilometers.</p>
     </div>
-
     <div class="feature-card">
-      <div class="feature-icon">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-      </div>
+      <div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
       <h3 class="feature-name">Mods Tracker</h3>
-      <p class="feature-desc">Document every upgrade and modification on your build. Category, description, install date, and notes — so the AI Mechanic knows exactly what's been changed when diagnosing your car.</p>
+      <p class="feature-desc">Document every upgrade and modification on your build. The AI Mechanic reads your mod list — so it knows exactly what's been changed before it starts diagnosing.</p>
     </div>
-
     <div class="feature-card">
-      <div class="feature-icon">
-        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-      </div>
-      <h3 class="feature-name">Make & Model Intelligence</h3>
-      <p class="feature-desc">Purpose-built for imported classics. The AI knows the quirks of a 1973 Mini Moke, a Triumph TR6, and an early Land Rover Series III — not generic advice pulled from a modern car database.</p>
+      <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+      <h3 class="feature-name">AI Maintenance Plan</h3>
+      <p class="feature-desc">Based on your service history and current mileage, the AI recommends what's due, what's overdue, and what to watch — specific to your vehicle's make, model, and quirks.</p>
     </div>
-
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+      <h3 class="feature-name">Mileage-Based Service Alerts</h3>
+      <p class="feature-desc">Log a next service mileage on any maintenance entry and TorqueIQ flags it on your dashboard the moment you're due. Never miss a scheduled service again.</p>
+    </div>
     <div class="feature-card feature-card-dim">
-      <div class="feature-icon">
-        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      </div>
+      <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
       <div class="coming-soon-badge">Coming Soon</div>
       <h3 class="feature-name" style="color:rgba(245,242,236,0.4)">Smart Parts Finder</h3>
       <p class="feature-desc" style="color:rgba(245,242,236,0.25)">When the AI confirms the part you need, it will surface vetted US-first suppliers instantly. No hunting through UK and Australian sites. No guessing on fitment.</p>
@@ -1032,12 +348,10 @@
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
 <section class="how">
   <div class="how-inner">
     <p class="section-label">How it works</p>
     <h2 class="section-title">From symptom to solution in minutes.</h2>
-
     <div class="steps">
       <div class="step">
         <div class="step-num">01</div>
@@ -1052,7 +366,7 @@
       <div class="step">
         <div class="step-num">03</div>
         <h3 class="step-title">AI Mechanic diagnoses</h3>
-        <p class="step-desc">Get ranked causes, a back-and-forth conversation to narrow it down, and a clear DIY vs. shop recommendation.</p>
+        <p class="step-desc">Get ranked causes, a back-and-forth conversation to narrow it down, and a clear DIY vs. shop recommendation with specific repair steps.</p>
       </div>
       <div class="step">
         <div class="step-num">04</div>
@@ -1063,11 +377,10 @@
   </div>
 </section>
 
-<!-- PRICING -->
 <section class="pricing">
   <p class="section-label">Pricing</p>
   <h2 class="section-title">Pay when your car breaks. Not when it doesn't.</h2>
-  <p class="pricing-intro">The forum is free — always. When you need the AI Mechanic, buy a session pack. One session, one symptom, until it's solved.</p>
+  <p class="pricing-intro">The forum is free — always. When you need the AI Mechanic, buy a session pack. One session, one symptom, until it's solved. Credits never expire.</p>
 
   <div class="forum-free">
     <div class="forum-free-left">
@@ -1077,10 +390,7 @@
         <div class="forum-free-desc">Browse, post, and get answers from owners who've fixed the same problem on the same car. AI Mechanic responds first on every thread.</div>
       </div>
     </div>
-    <div class="forum-free-price">
-      <strong>$0</strong>
-      forever
-    </div>
+    <div class="forum-free-price"><strong>$0</strong>forever</div>
   </div>
 
   <div class="credit-packs">
@@ -1104,64 +414,61 @@
     </div>
   </div>
 
-  <div class="founding-card" style="margin-top:1px;">
-    <div>
-      <span class="founding-badge">Founding Member — Pre-Launch Only</span>
-      <p class="founding-tier">Lifetime Access</p>
-      <div class="founding-price"><sup>$</sup>149.99</div>
-      <p class="founding-period">one-time · never pay again</p>
-      <p class="founding-note">↑ 75 sessions included · 40% off all future packs · rate locked for life</p>
-      <div class="founding-divider"></div>
-      <ul class="founding-features">
-        <li>75 diagnostic sessions included</li>
-        <li>40% off all future session packs — forever</li>
-        <li>Rate locked for life — price never increases</li>
-        <li>Full community forum access</li>
-        <li>Founding member badge</li>
-        <li>Direct input on new features</li>
-        <li>Early access to all new tools</li>
-      </ul>
-    </div>
+  <div class="founding-card">
+    <span class="founding-badge">Founding Member — While Available</span>
+    <p class="founding-tier">Lifetime Access</p>
+    <div class="founding-price"><sup>$</sup>149.99</div>
+    <p class="founding-period">one-time · never pay again</p>
+    <p class="founding-note">↑ 75 sessions included · 40% off all future packs · rate locked for life</p>
+    <div class="founding-divider"></div>
+    <ul class="founding-features">
+      <li>75 diagnostic sessions included</li>
+      <li>40% off all future session packs — forever</li>
+      <li>Rate locked for life — price never increases</li>
+      <li>Full community forum access</li>
+      <li>Founding member badge</li>
+      <li>Direct input on new features</li>
+      <li>Early access to all new tools</li>
+    </ul>
+    <a href="https://app.torqueiq.co/signup" class="btn-primary" style="display:inline-block;">Claim Founding Rate →</a>
   </div>
 </section>
 
-<!-- ROADMAP -->
 <section class="roadmap">
   <p class="section-label">What's built & what's coming</p>
   <h2 class="section-title">Built in phases. Useful from day one.</h2>
-
   <div class="roadmap-grid">
     <div class="roadmap-card">
-      <span class="roadmap-badge">Built</span>
+      <span class="roadmap-badge">Live Now</span>
       <p class="roadmap-phase active">Phase 01 — Foundation</p>
       <h3 class="roadmap-title">AI Mechanic + Community</h3>
       <ul class="roadmap-items">
         <li class="done">AI-powered conversational symptom diagnosis</li>
         <li class="done">DIY vs. shop recommendation engine</li>
-        <li class="done">Make & model specific knowledge</li>
+        <li class="done">Make & model specific knowledge — British, European, American, Japanese</li>
         <li class="done">Community forum with AI-first responses</li>
         <li class="done">Maintenance log — full service history per vehicle</li>
         <li class="done">Mods tracker — AI-aware of your upgrades</li>
-        <li class="done">Session credits — buy only what you need</li>
-        <li class="done">Multi-vehicle garage</li>
+        <li class="done">AI Maintenance Plan — recommendations from service history</li>
+        <li class="done">Mileage-based service due alerts</li>
+        <li class="done">Multi-vehicle garage with miles & km support</li>
+        <li class="done">Session credits — buy only what you need, never expire</li>
         <li class="done">Roadside-ready — works on any phone, anywhere</li>
         <li>Smart parts finder via vetted suppliers</li>
       </ul>
     </div>
-
     <div class="roadmap-card dim">
       <p class="roadmap-phase next">Phase 02 — Depth</p>
       <h3 class="roadmap-title">Expanded Intelligence</h3>
       <ul class="roadmap-items">
-        <li>AI Maintenance Plan — recommendations from your service history</li>
-        <li>Deeper make & model coverage</li>
         <li>Repair cost estimator</li>
         <li>Pre-purchase inspection checklist by model</li>
+        <li>YouTube repair video suggestions at diagnosis</li>
         <li>Monthly breakdown digest by make</li>
-        <li>Mileage-based service due alerts</li>
+        <li>Deeper make & model coverage</li>
+        <li>Mobile app</li>
       </ul>
     </div>
-
     <div class="roadmap-card dim">
       <p class="roadmap-phase future">Phase 03 — Platform</p>
       <h3 class="roadmap-title">Full Ecosystem</h3>
@@ -1169,7 +476,6 @@
         <li>Curated parts database with pricing history</li>
         <li>Trusted shop directory by region</li>
         <li>Classified listings for classic car parts</li>
-        <li>Mobile app</li>
         <li>Restoration project tracker</li>
         <li>Motorcycle & off-road vehicle support</li>
       </ul>
@@ -1177,27 +483,23 @@
   </div>
 </section>
 
-<!-- BOTTOM CTA -->
 <section class="cta">
   <div class="cta-glow"></div>
-  <h2>Get in before launch.</h2>
-  <p>Founding Member pricing disappears when TorqueIQ goes live. $149.99 once. Lifetime access. 75 sessions included.</p>
+  <h2>Your garage is waiting.</h2>
+  <p>Create a free account and start diagnosing. The forum is always free. Buy sessions only when you need them. Founding Member pricing available while it lasts.</p>
+  <div class="cta-buttons">
+    <a href="https://app.torqueiq.co/signup" class="btn-primary">Create Free Account</a>
+    <a href="https://app.torqueiq.co/login" class="btn-secondary">Sign In →</a>
+  </div>
   <div class="offer-pills">
-    <span class="offer-pill">✦ $149.99 one-time</span>
-    <span class="offer-pill">✦ 75 sessions included</span>
-    <span class="offer-pill">✦ 40% off refills forever</span>
-    <span class="offer-pill">✦ Rate locked for life</span>
+    <span class="offer-pill">✦ Forum always free</span>
+    <span class="offer-pill">✦ Credits never expire</span>
+    <span class="offer-pill">✦ No subscription</span>
     <span class="offer-pill">✦ Roadside ready</span>
+    <span class="offer-pill">✦ Founding Member $149.99 while available</span>
   </div>
-  <div class="waitlist-form" id="ctaForm">
-    <input type="email" id="ctaEmail" placeholder="your@email.com" />
-    <button onclick="handleSignup('ctaEmail', 'ctaForm', 'ctaSuccess')">Claim Founding Rate</button>
-  </div>
-  <div class="success-msg" id="ctaSuccess">✦ You're on the list. We'll reach out when TorqueIQ launches.</div>
-  <p class="form-note" style="opacity:1;animation:none;margin-top:1rem;">Offer only available during pre-launch · No credit card required</p>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="nav-logo">
     <svg class="nav-badge" viewBox="0 0 36 36" fill="none">
@@ -1206,55 +508,23 @@
     </svg>
     <span class="nav-wordmark">Torque<span>IQ</span></span>
   </div>
-  <div style="display:flex;flex-direction:column;align-items:center;gap:0.4rem;">
-    <span style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--gold);letter-spacing:0.1em;">TorqueIQ.co</span>
-    <span class="footer-note">© 2026 TorqueIQ. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="https://app.torqueiq.co/terms">Terms</a>
+    <a href="https://app.torqueiq.co/privacy">Privacy</a>
+    <a href="mailto:support@torqueiq.co">Support</a>
   </div>
-  <span class="footer-note" style="text-align:right;">Your garage. Your call.</span>
+  <span class="footer-note">© 2026 TorqueIQ · Your garage. Your call.</span>
 </footer>
 
 <script>
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwDQSsoHCUIzqQ1YDwwHkZ_bLRAcOjiEuXhwNM2DSOxr7EPLr39cO0uOwkjFTNk13k8/exec';
-
-  async function handleSignup(inputId, formId, successId) {
-    const email = document.getElementById(inputId).value.trim();
-    if (!email || !email.includes('@')) {
-      document.getElementById(inputId).style.borderBottom = '1px solid rgba(200,168,75,0.8)';
-      document.getElementById(inputId).placeholder = 'Enter a valid email';
-      return;
-    }
-
-    const btn = document.querySelector(`#${formId} button`);
-    btn.textContent = 'Saving...';
-    btn.disabled = true;
-
-    try {
-      await fetch(APPS_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, timestamp: new Date().toISOString(), source: inputId === 'heroEmail' ? 'hero' : 'cta' })
-      });
-    } catch (e) {
-      console.error('Signup error:', e);
-    }
-
-    document.getElementById(formId).style.display = 'none';
-    document.getElementById(successId).style.display = 'block';
-  }
-
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-      }
+      if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; }
     });
   }, { threshold: 0.1 });
 
   document.querySelectorAll('.feature-card, .step, .credit-pack, .founding-card, .roadmap-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
+    el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(el);
   });
